@@ -1,98 +1,129 @@
-# [Tech Challenge] Phase1
+# [Tech Challenge] Phase 1
 
-# General Questions
+## General Questions
 
-1. What does it means edit or delete transaction from extract? I didn't notice any UI for this
+1. What does it mean to edit/delete transactions in the extract? There are icons for edit/delete in tablet/mobile views; but how it will work is not defined
+
+---
 
 # EPIC 2: Home Page and Global Layout
 
-This epic focuses on implementing the main page structure and reusable layout components that are common across the application.
-It includes the responsive home page, core layout elements like the header, sidebar, and mobile navigation, as well as static sections such as the welcome card and transaction preview.
+This epic focuses on implementing the main page structure and layout components that are reused across the application.
 
-This epic will lay the foundation for consistent UI and navigation across the app.
+It includes the responsive Home Page, layout elements like the header, sidebar, and mobile navigation, and functional sections like welcome card, transaction form, and extract list.
 
-## User Stories Overview
+This also includes foundational work for consistency and maintainability: unit tests, Storybook, and mocked data structure simulating a BFF layer.
 
-1. As a user, I want to see a personalized welcome message and account balance.
-2. As a user, I want to start a new transaction directly from the homepage.
-3. As a user, I want to view the latest transactions in a quick extract list.
-4. As a user, I want to navigate the app using a responsive menu that adapts to my device.
-5. As a user, I want to have a consistent layout and header across all pages of the app.
-
-## User Stories Description
+## User Stories
 
 ### User Story 1: Welcome Message and Balance Card
 
 As a user, I want to see a personalized welcome message and account balance.
-Tasks:
 
-1. Create BalanceCard component with:
-   - User greeting ("Olá, Joana! :)"
-   - Current date
-   - "Saldo" label, eye toggle, underline
-   - "Conta Corrente" label and styled value (R$ 2.500,00)
-2. Add illustration (different for desktop/tablet/mobile) -- maybe for desktop view is error dont have the illustration
-3. Make layout responsive and visually match spacing from Figma
+**Tasks**
+
+- [Component] Create `BalanceCard` component with:
+  - Greeting text: "Olá, Joana! :"
+  - Date (dynamic)
+  - "Saldo" label with eye toggle
+  - "Conta Corrente" and value (currency formatted)
+- [Style] Add responsive illustration (mobile/tablet)
+- [Style] Make layout responsive and match Figma spacing
+- [API Integration] Add mocked data source (simulate API return for balance and user name)
+- [Test] Write unit test to verify rendering of values
+- [Component] Create Storybook story for isolated testing
+- [UI Flow] Integrate into `HomePage.tsx`
 
 ### User Story 2: Start a New Transaction
 
 As a user, I want to start a new transaction directly from the homepage.
-Tasks:
 
-1. Create TransactionForm component with:
-   - Title Nova transacao
-   - Input select: "Selecione o tipo de transação"
-   - Input number: Valor
-   - Button: "Concluir transação"
-2. Use styles: rounded borders, spacing, green primary button
-3. Support all dropdown states shown in UI (hover, active, disabled)
-4. Add illustration (different for desktop/tablet/mobile)
+**Tasks**
+
+- [Component] Create `TransactionForm` component
+  - Title "Nova transação"
+  - Select input for transaction type
+  - Number input for value
+  - Submit button
+  - Handle all states: hover, active, disabled
+  - Add form validation (disable submit on empty)
+  - Add illustration on bottom-right corner (differs by view)
+- [Component] Create Storybook with different states
+- [Test] Write unit test to check form interactivity and input values
+- [Page Integration] Integrate in `HomePage.tsx` under the balance card
+- [API Integration] Load types from mocked BFF API
+- [API Integration]: Simulate a transaction creation
+- [UI Flow]: Success to Create a new transaction side effects: balance and extract list
+- [UI Flow]: Error to Create a new transaction
 
 ### User Story 3: View Latest Transactions (Extrato)
 
 As a user, I want to view the latest transactions in a quick extract list.
 
-Tasks:
+**Tasks**
 
-1. Create TransactionList component
-2. Create reusable TransactionItem:
-   - Month label ("Novembro")
-   - Suggestion: Color-coded value (green for depósito, red for transferência)
-   - Date aligned right
-3. Add edit/delete icons
-4. Make list scrollable when reach a certain number of transactions,
-5. Support to responsivity in different devices view
+- [Component] Create `TransactionList` component
+- [Component] Create reusable `TransactionItem` component:
+  - Month label, type (Depósito, Transferência), value, and date
+  - Edit/Delete icons
+  - Color-code transaction values:
+  - Green (depósito), red (transferência)
+- [Component] Create Storybook examples with different transaction types
+- [Test] Write test: render and click interaction
+- [Page Integration] Integrate to right box in desktop view, and full section in mobile/tablet
+- [API Integration] Simulate response using local mock of recent transactions
 
 ### User Story 4: Responsive Navigation Menu
 
-As a user, I want to navigate the app using a responsive menu that adapts to my device.
+As a user, I want to navigate the app using a responsive menu.
 
-Tasks:
+**Tasks**
 
-- Create SidebarMenu component (desktop)
-  - Items: Início, Transferências, Investimentos, Outros serviços
-  - Current route highlighted (green underline, green text)
-- Create a TopMenu component (tablet)
-  - Items: Início, Transferências, Investimentos, Outros serviços
-  - Current route highlighted (green underline, green text)
-  - Analyze the possibility to use the same SidebarMenu that behaviors different based on viewport
-- Create MobileMenu and Hamburger logic:
-  - Show hamburger icon
-  - Slide down menu
-  - Current page indicator (underline and bold)
-  - Implement close icon
+- [Component] Create `SidebarMenu` (desktop)
+  - Route items: Início, Transferências, etc.
+  - Highlight active page
+- [Component] Create `TopMenu` (tablet)
+  - Horizontal layout of menu items
+  - Active route indicator
+- [Component] Create `HamburgerMenu` (mobile)
+  - Open/close toggle
+  - Slide-down behavior
+- [Component] Create Storybook entries for each variant
+- [Test] Write test: visibility of correct menu on viewport change
+- [Page Integration] Integrate into `Layout.tsx`
 
 ### User Story 5: Global Layout and Page Wrapper
 
-As a user, I want to have a consistent layout and header across all pages of the app.
+As a user, I want to have a consistent layout and header across all pages.
 
-Tasks:
+**Tasks**
 
-- Create Layout.tsx component to wrap all pages
-- Create Header.tsx component with:
-  - Suggestion: Logo left
-  - User name and Profile icon in the right
-- Handle page structure with grid layout component
-  - Desktop: left sidebar, main content, right box for extract
-  - Other devices: adjust gird system according to the view
-- Add padding/margins based on device sizes
+- [Component] Create `Layout.tsx` wrapper
+  - Compose sidebar/header/body according to screen size
+  - Add responsive grid layout for desktop/tablet/mobile
+  - Apply padding and margin rules from Figma
+- [Component] Create `Header.tsx` with:
+  - Logo (left)
+  - User name and avatar (right)
+  - Apply padding and margin rules from Figma
+- [Component] Create Storybook layout example with children slot
+- [Test] Create test to check if layout wraps content correctly
+- [Page Integration] Use `Layout` wrapper in Home and all other pages
+
+### User Story 6: Developer Mock Backend Strategy
+
+As a developer, I want to simulate API behavior using a mock layer so that frontend integration is consistent before the real backend is available.
+
+It is possible here, We create a initial database model and create mocks based on that.
+
+**Tasks**
+
+- Define structure for `mock/api` folder
+- Create mock endpoints for data models
+  - Create API typed response models for consistency
+  - User info
+  - Balance
+  - Transaction list
+  - Transaction types
+  - Integrate mocks using a simple fetch wrapper (e.g. delay + response)
+  - Feel free to suggest or remove unnecessary endpoints
