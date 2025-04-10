@@ -2,7 +2,8 @@
 
 ## General Questions
 
-1. What does it mean to edit/delete transactions in the extract? There are icons for edit/delete in tablet/mobile views; but how it will work is not defined
+1. What does it mean to edit/delete transactions in the extract?
+   There are icons for edit/delete in tablet/mobile views; but how it will work is not defined
 
 ---
 
@@ -14,6 +15,8 @@ It includes the responsive Home Page, layout elements like the header, sidebar, 
 
 This also includes foundational work for consistency and maintainability: unit tests, Storybook, and mocked data structure simulating a BFF layer.
 
+---
+
 ## User Stories
 
 ### User Story 1: Welcome Message and Balance Card
@@ -23,7 +26,7 @@ As a user, I want to see a personalized welcome message and account balance.
 **Tasks**
 
 - [Component] Create `BalanceCard` component with:
-  - Greeting text: "Olá, Joana! :"
+  - Greeting text: "Olá, Joana! :)"
   - Date (dynamic)
   - "Saldo" label with eye toggle
   - "Conta Corrente" and value (currency formatted)
@@ -40,7 +43,7 @@ As a user, I want to start a new transaction directly from the homepage.
 
 **Tasks**
 
-- [Component] Create `TransactionForm` component
+- [Component] Create `TransactionForm` component:
   - Title "Nova transação"
   - Select input for transaction type
   - Number input for value
@@ -52,9 +55,11 @@ As a user, I want to start a new transaction directly from the homepage.
 - [Test] Write unit test to check form interactivity and input values
 - [Page Integration] Integrate in `HomePage.tsx` under the balance card
 - [API Integration] Load types from mocked BFF API
-- [API Integration]: Simulate a transaction creation
-- [UI Flow]: Success to Create a new transaction side effects: balance and extract list
-- [UI Flow]: Error to Create a new transaction
+- [API Integration] Simulate a transaction creation
+- [UI Flow] Success case: update balance and extract list
+- [UI Flow] Error case: show feedback message
+
+---
 
 ### User Story 3: View Latest Transactions (Extrato)
 
@@ -66,8 +71,7 @@ As a user, I want to view the latest transactions in a quick extract list.
 - [Component] Create reusable `TransactionItem` component:
   - Month label, type (Depósito, Transferência), value, and date
   - Edit/Delete icons
-  - Color-code transaction values:
-  - Green (depósito), red (transferência)
+  - Color-code transaction values: green (depósito), red (transferência)
 - [Component] Create Storybook examples with different transaction types
 - [Test] Write test: render and click interaction
 - [Page Integration] Integrate to right box in desktop view, and full section in mobile/tablet
@@ -79,13 +83,13 @@ As a user, I want to navigate the app using a responsive menu.
 
 **Tasks**
 
-- [Component] Create `SidebarMenu` (desktop)
+- [Component] Create `SidebarMenu` (desktop):
   - Route items: Início, Transferências, etc.
   - Highlight active page
-- [Component] Create `TopMenu` (tablet)
+- [Component] Create `TopMenu` (tablet):
   - Horizontal layout of menu items
   - Active route indicator
-- [Component] Create `HamburgerMenu` (mobile)
+- [Component] Create `HamburgerMenu` (mobile):
   - Open/close toggle
   - Slide-down behavior
 - [Component] Create Storybook entries for each variant
@@ -98,14 +102,13 @@ As a user, I want to have a consistent layout and header across all pages.
 
 **Tasks**
 
-- [Component] Create `Layout.tsx` wrapper
+- [Component] Create `Layout.tsx` wrapper:
   - Compose sidebar/header/body according to screen size
   - Add responsive grid layout for desktop/tablet/mobile
   - Apply padding and margin rules from Figma
 - [Component] Create `Header.tsx` with:
   - Logo (left)
   - User name and avatar (right)
-  - Apply padding and margin rules from Figma
 - [Component] Create Storybook layout example with children slot
 - [Test] Create test to check if layout wraps content correctly
 - [Page Integration] Use `Layout` wrapper in Home and all other pages
@@ -114,16 +117,12 @@ As a user, I want to have a consistent layout and header across all pages.
 
 As a developer, I want to simulate API behavior using a mock layer so that frontend integration is consistent before the real backend is available.
 
-It is possible here, We create a initial database model and create mocks based on that.
-
 **Tasks**
 
-- Define structure for `mock/api` folder
-- Create mock endpoints for data models
-  - Create API typed response models for consistency
+- [Structure] Define folder structure for `mock/api`
+- [Model] Create mock endpoints for:
   - User info
   - Balance
   - Transaction list
   - Transaction types
-  - Integrate mocks using a simple fetch wrapper (e.g. delay + response)
-  - Feel free to suggest or remove unnecessary endpoints
+- [API Layer] Create fetch wrapper (e.g., `fetchWithDelay`) for mocking latency
