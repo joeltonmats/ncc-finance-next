@@ -2,7 +2,12 @@
   "name": "ncc-finance",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
+    "check:node": "node -e \"if (parseInt(process.versions.node.split('.')[0]) < 18) { console.error('❌ Node 18+ is required'); process.exit(1); }\"",
+    "preinstall": "npm run check:node",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
