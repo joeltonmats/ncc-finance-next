@@ -2,10 +2,10 @@
 name: CI - Lint, Format, Test
 
 on:
-  push:
-    branches: [task/ep2-us5-global-layout-and-page-wrapper]
   pull_request:
-    branches: [task/ep2-us5-global-layout-and-page-wrapper]
+    branches:
+      - main
+      - dev
 
 jobs:
   validate:
