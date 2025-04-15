@@ -1,11 +1,5 @@
-import Header from "@/components/header/Header";
-import ResponsiveLayout from "@/features/home/components/layout/ResponsiveLayout";
+import Home from "@/features/home/Home";
 
-export default function Home() {
-  return (
-    <>
-      <Header />
-      <ResponsiveLayout />
-    </>
-  );
+export default function HomePage() {
+  return <Home />;
 }

@@ -1,6 +1,3 @@
-"use client";
-import React from "react";
-
 export default function TabletLayout() {
   return (
     <div className="min-h-screen bg-neutral-100 font-sans">
