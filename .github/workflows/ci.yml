@@ -2,10 +2,11 @@
 name: CI - Lint, Format, Test
 
 on:
-  pull_request:
+  push:
     branches:
       - main
       - dev
+  pull_request: {} # triggers on every PR
 
 jobs:
   validate:
