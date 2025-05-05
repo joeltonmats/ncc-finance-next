@@ -12,32 +12,32 @@ This epic defines the foundational structure for the project. It includes setup 
 
 ## User Stories
 
-### User Story 1: Initial Setup with Next.js, Tailwind and TypeScript
+### ✅ User Story 1: Initial Setup with Next.js, Tailwind and TypeScript
 
 As a developer, I want to initialize the project with a solid base using Next.js, Tailwind, and TypeScript to ensure consistency and productivity.
 
 **Tasks**
 
-- Initialize the project using `create-next-app` with TypeScript template
-- Install and configure TailwindCSS
-- Create base folder structure: `components`, `pages`, `styles`, `types`, etc.
-- Create a base layout component to validate theme and global styles
+- [x] Initialize the project using `create-next-app` with TypeScript template
+- [x] Install and configure TailwindCSS
+- [x] Create base folder structure: `components`, `features`, `styles`, `types`, etc.
+- [x] Create a base layout component to validate theme and global styles
 
 ---
 
-### User Story 2: Configure ESLint, Prettier, and Code Style Standards
+### ✅ User Story 2: Configure ESLint, Prettier, and Code Style Standards
 
 As a developer, I want to apply standardized rules for code linting and formatting to improve readability and prevent bugs.
 
 **Tasks**
 
-- Install useful libraries
-  - Install and configure `eslint`, `prettier`, `eslint-plugin-react`, `eslint-plugin-jsx-a11y`, `eslint-config-prettier`
-- Configure the libraries
+- [x] Install useful libraries
+  - Install and configure `eslint`, `prettier`, `eslint-plugin-react`, `eslint-config-prettier`
+- [x] Configure the libraries
   - Use ESLint Flat Config via `eslint.config.mjs`
   - Create `.prettierrc` and `.prettierignore`
   - Add lint script to `package.json`
-- Setup VSCode integration via `.vscode/settings.json`
+- [x] Setup VSCode integration via `.vscode/settings.json`
 
 ### User Story 3: Setup Storybook for Component Development
 
@@ -51,31 +51,30 @@ Note: Suggestion to components have their storybook in the same directory.
 - Integrate with Tailwind and global theme provider
 - Add scripts to `package.json` for `storybook` and `build-storybook`
 
-### User Story 4: Configure Testing with Vitest and RTL
+### ✅ User Story 4: Configure Testing with Vitest and RTL
 
 As a developer, I want to ensure component quality and correctness using unit tests.
 
 **Tasks**
 
-- Install Tools
+- [x] Install Tools
   - install `vitest`, `@testing-library/react`, `@testing-library/jest-dom`
-- Configuration Create `vitest.config.ts` with aliases and globals
+- [x] Configuration Create `vitest.config.ts` with aliases and globals
   - Create test folder or use `.test.tsx` pattern
   - Add scripts: `test`, `test:watch`, `test:coverage`
   - Create basic test for base components
 
-### User Story 6: Automate Quality Checks with Git Hooks
+### ✅ User Story 6: Automate Quality Checks with Git Hooks
 
 As a developer, I want to enforce quality through pre-commit checks using Husky and lint-staged.
 
 **Tasks**
 
-- Install libraries
+- [x] Install libraries
   - install and configure `husky`, `lint-staged`
-- Create `pre-commit` and `pre-push` hooks
+- [x] Create `pre-commit` and `pre-push` hooks
   - `pre-commit`: run eslint, prettier, and vitest
   - `pre-push`: run `vitest --coverage`
-- Document how to enable and use in README
 
 ---
 
