@@ -184,7 +184,7 @@ As a user, I want to have a consistent layout and header across all pages.
 - [Test] Create test to check if layout wraps content correctly
 - [Page Integration] Use `Layout` wrapper in Home and all other pages
 
-### User Story 6: Developer Mock Backend Strategy
+### ✅ User Story 6: Developer Mock Backend Strategy
 
 As a developer, I want to simulate API behavior using a mock layer so that frontend integration is consistent before the real backend is available.
 
