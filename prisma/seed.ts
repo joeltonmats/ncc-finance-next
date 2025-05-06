@@ -1,5 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import { faker } from "@faker-js/faker";
+import { PrismaClient } from "@prisma/client";
+import { hash } from "bcrypt";
 
 const prisma = new PrismaClient();
 
@@ -25,6 +26,8 @@ function randomTransaction(balanceId: string) {
 async function main() {
   console.log("[Seeding database...]");
 
+  const passwordHash = await hash("test12", 10);
+
   for (let i = 0; i < 5; i++) {
     const region = faker.helpers.arrayElement(Object.keys(regions));
     const currency = regions[region];
@@ -34,6 +37,7 @@ async function main() {
       data: {
         name: faker.person.fullName(),
         email: faker.internet.email(),
+        password: passwordHash,
         createdAt: new Date(),
       },
     });
