@@ -2,12 +2,11 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url      = env("SQLITE_PRISMA_URL")
 }
 
 /**
@@ -17,6 +16,7 @@ model User {
   id        String    @id @default(cuid())
   name      String
   email     String    @unique
+  password  String
   balances  Balance[] // One-to-many relation - a user can have multiple accounts (checking, savings).
   createdAt DateTime  @default(now())
 }

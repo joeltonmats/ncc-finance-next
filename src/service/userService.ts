@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 
 // TODO: Change based your id database or user test if necessary
-const DEFAULT_USER_ID = "cmab2znze0000vniszy76dnhs";
+const DEFAULT_USER_ID = "cmae2dxdf002dvnm8gqpth4s2";
 
 export async function getAllUsers() {
   return prisma.user.findMany({
