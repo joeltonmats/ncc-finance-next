@@ -1,8 +1,18 @@
 import { faker } from "@faker-js/faker";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, User } from "@prisma/client";
 import { hash } from "bcrypt";
 
 const prisma = new PrismaClient();
+
+type UserBasicInfo = Pick<User, "name" | "email">;
+
+const users: UserBasicInfo[] = [
+  { name: "Carlos Ferreira", email: "carlosrfjrdev@ncc.com" },
+  { name: "Joelton Matos", email: "joeltonmatos@ncc.com" },
+  { name: "Larissa Rocha", email: "larisr@ncc.com" },
+  { name: "Leonardo Medeiros", email: "leomartinsm@ncc.com" },
+  { name: "Ricardo Momberg", email: "ricardomomberg@ncc.com" },
+];
 
 const regions: Record<string, string> = {
   brazilian: "BRL",
@@ -26,17 +36,18 @@ function randomTransaction(balanceId: string) {
 async function main() {
   console.log("[Seeding database...]");
 
-  const passwordHash = await hash("test12", 10);
+  const passwordHash = await hash("ncc", 10);
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < users.length; i++) {
+    const userData = users[i];
     const region = faker.helpers.arrayElement(Object.keys(regions));
     const currency = regions[region];
 
     // create  users
     const user = await prisma.user.create({
       data: {
-        name: faker.person.fullName(),
-        email: faker.internet.email(),
+        name: userData.name,
+        email: userData.email,
         password: passwordHash,
         createdAt: new Date(),
       },

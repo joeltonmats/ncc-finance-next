@@ -1,5 +1,6 @@
 "use client";
 
+import { BUTTON_CONSTANTS, ROUTE_CONSTANTS } from "@/constants";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 
@@ -7,13 +8,17 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const loginAttempt = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await signIn("credentials", { email, password, callbackUrl: "/dashboard" });
+    await signIn("credentials", {
+      email,
+      password,
+      callbackUrl: ROUTE_CONSTANTS.dashboard,
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 p-6">
+    <form onSubmit={loginAttempt} className="space-y-4 p-6">
       <input
         placeholder="Email"
         onChange={(e) => setEmail(e.target.value)}
@@ -26,16 +31,8 @@ export default function LoginPage() {
         className="input"
       />
       <button type="submit" className="btn btn-primary">
-        Login
+        {BUTTON_CONSTANTS.login}
       </button>
     </form>
   );
 }
-
-/**
- * snippet: logout
- 
- import { signOut } from 'next-auth/react';
-
-<button onClick={() => signOut({ callbackUrl: '/' })}>Logout</button> 
- */
