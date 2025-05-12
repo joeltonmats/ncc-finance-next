@@ -1,4 +1,5 @@
-// This is your Prisma schema file. Learn more about it in the docs: https://pris.ly/d/prisma-schema
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
@@ -6,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("SQLITE_PRISMA_URL")
+  url      = env("DATABASE_URL")
 }
 
 /**
