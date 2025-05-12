@@ -94,6 +94,8 @@ This also includes foundational work for consistency and maintainability: unit t
 
 As a user, I want to see a personalized welcome message and account balance.
 
+Owner: Ricardo
+
 **Tasks**
 
 - [Component] Create `BalanceCard` component with:
@@ -111,6 +113,8 @@ As a user, I want to see a personalized welcome message and account balance.
 ### User Story 2: Start a New Transaction
 
 As a user, I want to start a new transaction directly from the homepage.
+
+Owner: Larissa
 
 **Tasks**
 
@@ -135,6 +139,8 @@ As a user, I want to start a new transaction directly from the homepage.
 ### User Story 3: View Latest Transactions (Extrato)
 
 As a user, I want to view the latest transactions in a quick extract list.
+
+Owner: Carlos
 
 **Tasks**
 
@@ -197,3 +203,24 @@ As a developer, I want to simulate API behavior using a mock layer so that front
   - Transaction list
   - Transaction types
 - [API Layer] Create fetch wrapper (e.g., `fetchWithDelay`) for mocking latency
+
+# EPIC 3: Home (aka dashboard)
+
+Owner:Leonardo
+
+### User Story 1: Header
+
+### User Story 1: Content
+
+### User Story 1: Footer
+
+# EPIC 4: Create the project Figma based on the original one
+
+# EPIC 5: Create a demo video
+
+# EPIC 6: Delivery Application add a README ENHANCEMENT
+
+- Access to github
+- Video Link
+- Link to Figma
+- How to install and run the project
