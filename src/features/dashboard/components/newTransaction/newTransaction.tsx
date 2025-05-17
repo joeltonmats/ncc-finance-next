@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import "./newTransaction.css"; // Import the CSS file for styling
+import { NumericFormat } from "react-number-format";
 
 const NewTransaction: React.FC = () => {
   const [transactionType, setTransactionType] = useState("");
@@ -38,20 +39,25 @@ const NewTransaction: React.FC = () => {
         </div>
 
         {/* Input */}
-        <label htmlFor="transactionValue" className="subtitle-card mb-2">
+        <label htmlFor="transactionValue" className="subtitle-card">
           Valor
         </label>
-        <input
+        <NumericFormat
           id="transactionValue"
-          type="number"
-          placeholder="00,00"
+          thousandSeparator="."
+          decimalSeparator=","
+          prefix="R$ "
+          placeholder="R$ 0,00"
           className="dropdown-decor focus:border-brand-primary focus:ring-brand-primary w-70 rounded-md border p-2 shadow-sm sm:text-sm"
+          allowNegative={false}
+          decimalScale={2}
+          fixedDecimalScale
         />
 
         {/* Submit Button */}
         <button
           onClick={handleSubmit}
-          className="bg-brand-primary hover:bg-brand-primary-dark w-30 rounded-md py-2 font-semibold text-white"
+          className="bg-brand-primary hover:bg-brand-primary-dark w-30 rounded-md py-2 text-center font-semibold text-white"
         >
           Confirmar
         </button>
