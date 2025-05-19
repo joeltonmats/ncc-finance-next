@@ -4,7 +4,7 @@ import { ROUTE_CONSTANTS } from "@/constants";
 import { Dialog, DialogPanel, Transition } from "@headlessui/react";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { Fragment, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import validator from "validator";
@@ -21,6 +21,8 @@ export default function SigninModal({
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
 
+  const pathname = usePathname();
+
   useEffect(() => {
     if (!isOpen) {
       setEmail("");
@@ -28,6 +30,12 @@ export default function SigninModal({
       setEmailError(false);
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    if (pathname === ROUTE_CONSTANTS.dashboard) {
+      onClose();
+    }
+  }, [pathname, onClose]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,7 +54,6 @@ export default function SigninModal({
 
     if (res?.ok) {
       router.push(ROUTE_CONSTANTS.dashboard);
-      onClose();
     } else {
       toast.error("Nome/email incorretos");
     }
@@ -58,8 +65,8 @@ export default function SigninModal({
         <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
 
         <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4">
-            <DialogPanel className="relative h-screen w-full max-w-md transform overflow-hidden rounded bg-white p-6 text-left align-middle shadow-xl transition-all sm:max-w-lg md:max-w-xl">
+          <div className="flex min-h-full items-center justify-center">
+            <DialogPanel className="relative h-screen w-full max-w-md transform overflow-hidden bg-white px-6 py-10 text-left align-middle shadow-xl transition-all sm:max-w-lg md:max-w-xl">
               <button
                 onClick={onClose}
                 className="absolute top-4 right-4 text-xl text-neutral-500 hover:text-neutral-700"
@@ -119,13 +126,15 @@ export default function SigninModal({
                     Esqueci a senha!
                   </a>
                 </div>
-                <button
-                  type="submit"
-                  disabled={!email || !password}
-                  className="bg-button-primary w-full rounded-md px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
-                >
-                  Acessar
-                </button>
+                <div className="flex justify-center">
+                  <button
+                    type="submit"
+                    disabled={!email || !password}
+                    className="bg-button-primary flex w-40 items-center justify-center rounded-md py-2 text-sm font-semibold text-white hover:bg-green-700 disabled:opacity-50"
+                  >
+                    Acessar
+                  </button>
+                </div>
               </form>
             </DialogPanel>
           </div>
