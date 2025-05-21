@@ -6,6 +6,7 @@ export const HEADER_CONSTANTS = {
 };
 
 export const ROUTE_CONSTANTS = {
+  home: "/",
   signin: "/signin",
   signup: "/signup",
   dashboard: "/dashboard",

@@ -1,14 +1,15 @@
 "use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import SigninModal from "@/components/SigninModal";
 import { HEADER_CONSTANTS, ROUTE_CONSTANTS } from "@/constants";
+import SignupModal from "@/components/SignupModal";
 
 export default function HomeHeader() {
-  const [showLogin, setShowLogin] = useState(false);
-
   const router = useRouter();
+  const pathname = usePathname();
+  const isSignin = pathname === ROUTE_CONSTANTS.signin;
+  const isSignup = pathname === ROUTE_CONSTANTS.signup;
 
   return (
     <>
@@ -21,7 +22,7 @@ export default function HomeHeader() {
         <div className="mt-4 flex w-full gap-2 md:mt-0 md:w-auto md:justify-end">
           <button
             className="border-brand-primary text-brand-primary rounded-md border px-4 py-1 text-sm"
-            onClick={() => setShowLogin(true)}
+            onClick={() => router.push(ROUTE_CONSTANTS.signin)}
           >
             {HEADER_CONSTANTS.account}
           </button>
@@ -33,7 +34,9 @@ export default function HomeHeader() {
           </button>
         </div>
       </header>
-      <SigninModal isOpen={showLogin} onClose={() => setShowLogin(false)} />
+
+      <SigninModal isOpen={isSignin} onClose={() => router.push("/")} />
+      <SignupModal isOpen={isSignup} onClose={() => router.push("/")} />
     </>
   );
 }
