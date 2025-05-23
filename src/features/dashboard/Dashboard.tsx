@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { ROUTE_CONSTANTS } from "@/constants";
+import { getUserBalances, getUserById } from "@/service/userService";
 
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
@@ -14,20 +15,37 @@ export default async function Dashboard() {
     redirect(ROUTE_CONSTANTS.signin);
   }
 
+  const user = await getUserById(session.user.id);
+
+  const balances = await getUserBalances(session.user.id);
+
+  const totalBalance = balances
+    .filter((b) => b.currency === "BRL")
+    .reduce((sum, b) => sum + b.amount, 0);
+
   return (
     <>
       <DashboardHeader />
       <div>
         <div className="hidden lg:block">
-          <DesktopLayout />
+          <DesktopLayout
+            userName={user?.name ?? "Usuário"}
+            userBalance={totalBalance}
+          />
         </div>
 
         <div className="hidden md:block lg:hidden">
-          <TabletLayout />
+          <TabletLayout
+            userName={user?.name ?? "Usuário"}
+            userBalance={totalBalance}
+          />
         </div>
 
         <div className="block md:hidden">
-          <MobileLayout />
+          <MobileLayout
+            userName={user?.name ?? "Usuário"}
+            userBalance={totalBalance}
+          />
         </div>
       </div>
     </>
