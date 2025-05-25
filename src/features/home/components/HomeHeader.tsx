@@ -1,13 +1,30 @@
 "use client";
 import { HEADER_CONSTANTS, ROUTE_CONSTANTS } from "@/constants";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function HomeHeader() {
   const router = useRouter();
 
   return (
     <header className="flex flex-wrap items-center justify-between bg-white px-4 py-4 shadow-sm sm:px-6 md:px-8">
-      <div className="text-brand-primary text-xl font-bold">Bytebank</div>
+      <div className="flex">
+        <div className="relative h-5 w-6">
+          <Image
+            src="/assets/home/logo-verde.svg"
+            alt="Saldo oculto"
+            width="27"
+            height="27"
+            priority={false}
+          />
+        </div>
+        <div className="text-brand-primary text-xl font-bold italic">
+          Bytebank
+        </div>
+      </div>
+      {
+        //<div className="text-brand-primary text-xl font-bold italic">Bytebank</div>
+      }
       <nav className="hidden gap-6 text-sm font-medium text-neutral-700 md:flex">
         <a href="#">{HEADER_CONSTANTS.about}</a>
         <a href="#">{HEADER_CONSTANTS.services}</a>
