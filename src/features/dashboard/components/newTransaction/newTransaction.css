@@ -1,0 +1,45 @@
+.tw-card-background {
+  color: #cbcbcb;
+  min-height: 400px;
+}
+
+.card-decor {
+  background-image:
+    url("/assets/bg-left.svg"), url("/assets/bg-right.svg"),
+    url("/assets/bg-right2.svg");
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position:
+    left bottom,
+    right top,
+    right bottom;
+  background-size: 100px, 100px, 250px;
+}
+
+@media (max-width: 360px) {
+  .card-decor {
+    background-image: url("/assets/bg-left.svg"), url("/assets/bg-right.svg");
+    background-size: 100px, 100px;
+    background-position:
+      left bottom,
+      right top;
+  }
+}
+
+.title-card {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 23px;
+  color: var(--color-brand-primary);
+}
+
+.subtitle-card {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--color-brand-primary);
+}
+
+.dropdown-decor {
+  border-color: var(--color-brand-primary);
+  border: 1px;
+}
