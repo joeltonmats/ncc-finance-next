@@ -4,11 +4,14 @@ import React, { useState } from "react";
 import "./newTransaction.css"; // Import the CSS file for styling
 import { NumericFormat, NumberFormatValues } from "react-number-format";
 interface NewTransactionProps {
-  saldo: number;
-  setSaldo: React.Dispatch<React.SetStateAction<number>>;
+  balance: number;
+  setBalance: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const NewTransaction: React.FC<NewTransactionProps> = ({ saldo, setSaldo }) => {
+const NewTransaction: React.FC<NewTransactionProps> = ({
+  balance,
+  setBalance,
+}) => {
   const [transactionType, setTransactionType] = useState("");
   const [valor, setValor] = useState("");
 
@@ -23,27 +26,21 @@ const NewTransaction: React.FC<NewTransactionProps> = ({ saldo, setSaldo }) => {
   };
 
   const handleSubmit = () => {
-    const valorNumber = parseFloat(valor.replace(",", "."));
-    if (!transactionType || !valorNumber) {
+    const valueNumber = parseFloat(valor);
+    if (!transactionType || !valueNumber) {
       alert("Selecione o tipo e informe um valor válido.");
       return;
     }
-    let novoSaldo = saldo;
+    let newBalance = balance;
     if (transactionType === "Deposito") {
-      novoSaldo += valorNumber;
-      console.log(
-        `Depósito de R$ ${valorNumber} realizado. Novo saldo: R$ ${novoSaldo}`
-      );
+      newBalance += valueNumber;
     } else if (
       transactionType === "Saque" ||
       transactionType === "Transferencia"
     ) {
-      novoSaldo -= valorNumber;
-      console.log(
-        `Depósito de R$ ${valorNumber} realizado. Novo saldo: R$ ${novoSaldo}`
-      );
+      newBalance -= valueNumber;
     }
-    setSaldo(novoSaldo);
+    setBalance(newBalance);
     alert(
       `Nova transação: ${transactionType} de R$ ${Number(valor).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`
     );

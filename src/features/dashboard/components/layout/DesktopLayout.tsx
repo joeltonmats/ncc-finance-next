@@ -3,7 +3,7 @@
 import WelcomeCard from "@/components/WelcomeCard/WelcomeCard";
 import NewTransaction from "../newTransaction/newTransaction";
 import React, { useState } from "react";
-        
+
 interface DesktopLayoutProps {
   userName: string;
   userBalance: number;
@@ -13,7 +13,7 @@ export default function DesktopLayout({
   userName,
   userBalance,
 }: DesktopLayoutProps) {
-  const [saldo, setSaldo] = useState(2500);
+  const [balance, setBalance] = useState(userBalance);
   return (
     <div className="min-h-screen w-full bg-neutral-100 font-sans">
       {/* Wrapper to apply outer spacing as shown in the design spec */}
@@ -23,23 +23,15 @@ export default function DesktopLayout({
           <aside className="rounded-md bg-white p-4 shadow-md">
             <nav className="flex flex-col gap-3 text-sm font-medium text-neutral-900">
               <span className="text-brand-primary">Início</span>
-              <span className="hover:text-brand-primary">Transferências</span>
-              <span className="hover:text-brand-primary">Investimentos</span>
-              <span className="hover:text-brand-primary">Outros serviços</span>
             </nav>
           </aside>
 
           {/* Center */}
           <section className="flex flex-col gap-6">
-            <WelcomeCard
-              name={userName}
-              date={new Date()}
-              balance={userBalance}
-            />
+            <WelcomeCard name={userName} date={new Date()} balance={balance} />
 
-            {/* <div className="rounded-md bg-neutral-500/10 p-6 text-sm shadow-md"> */}
-            <NewTransaction saldo={saldo} setSaldo={setSaldo} />
-            {/* </div> */}
+            {/* Card for making transactions */}
+            <NewTransaction balance={balance} setBalance={setBalance} />
           </section>
 
           {/* Extract */}
