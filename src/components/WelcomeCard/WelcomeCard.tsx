@@ -34,9 +34,11 @@ export default function WelcomeCard({
   });
 
   return (
-    <section className={styles["block-saldo"]}>
-      <h2>Olá, {name}! :)</h2>
-      <time>{formattedDate}</time>
+    <div className={styles["block-saldo"]}>
+      <div className={styles["title-welcome"]}>Olá, {name}! :)</div>
+      <div className={styles["subtitle-welcome"]}>
+        <time>{formattedDate}</time>
+      </div>
 
       <div className={styles.flex}>
         <div className={styles["saldo-valor"]}>
@@ -67,6 +69,6 @@ export default function WelcomeCard({
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

@@ -1,7 +1,8 @@
 "use client";
 import WelcomeCard from "@/components/WelcomeCard/WelcomeCard";
 import NewTransaction from "../newTransaction/newTransaction";
-        
+import React, { useState } from "react";
+
 interface TabletLayoutProps {
   userName: string;
   userBalance: number;
@@ -11,6 +12,7 @@ export default function TabletLayout({
   userName,
   userBalance,
 }: TabletLayoutProps) {
+  const [balance, setBalance] = useState(userBalance);
 
   return (
     <div className="min-h-screen bg-neutral-100 font-sans">
@@ -26,14 +28,11 @@ export default function TabletLayout({
       <main className="grid grid-cols-2 gap-4 p-4">
         <section className="col-span-2 flex flex-col gap-4">
           <div className="bg-brand-primary rounded-md p-4 text-white shadow-md">
-            <WelcomeCard
-              name={userName}
-              date={new Date()}
-              balance={userBalance}
-            />
+            <WelcomeCard name={userName} date={new Date()} balance={balance} />
           </div>
 
-          <NewTransaction />
+          {/* Card for making transactions */}
+          <NewTransaction balance={balance} setBalance={setBalance} />
         </section>
 
         <aside className="col-span-2 rounded-md bg-white p-4 shadow-md">

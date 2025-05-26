@@ -13,6 +13,7 @@
     right top,
     right bottom;
   background-size: 100px, 100px, 250px;
+  padding: 24px;
 }
 
 @media (max-width: 360px) {
@@ -27,14 +28,14 @@
 
 .title-card {
   font-family: "Inter", sans-serif;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 23px;
   color: var(--color-brand-primary);
 }
 
 .subtitle-card {
   font-family: "Inter", sans-serif;
-  font-weight: 700;
+  font-weight: 750;
   font-size: 18px;
   color: var(--color-brand-primary);
 }
