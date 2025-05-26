@@ -2,10 +2,15 @@
 
 import React, { useState } from "react";
 import "./newTransaction.css"; // Import the CSS file for styling
-import { NumericFormat } from "react-number-format";
+import { NumericFormat, NumberFormatValues } from "react-number-format";
+interface NewTransactionProps {
+  saldo: number;
+  setSaldo: React.Dispatch<React.SetStateAction<number>>;
+}
 
-const NewTransaction: React.FC = () => {
+const NewTransaction: React.FC<NewTransactionProps> = ({ saldo, setSaldo }) => {
   const [transactionType, setTransactionType] = useState("");
+  const [valor, setValor] = useState("");
 
   const handleTransactionChange = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -13,8 +18,37 @@ const NewTransaction: React.FC = () => {
     setTransactionType(event.target.value);
   };
 
+  const handleValueChange = (values: NumberFormatValues) => {
+    setValor(values.value);
+  };
+
   const handleSubmit = () => {
-    alert(`Nova transação: ${transactionType}`);
+    const valorNumber = parseFloat(valor.replace(",", "."));
+    if (!transactionType || !valorNumber) {
+      alert("Selecione o tipo e informe um valor válido.");
+      return;
+    }
+    let novoSaldo = saldo;
+    if (transactionType === "Deposito") {
+      novoSaldo += valorNumber;
+      console.log(
+        `Depósito de R$ ${valorNumber} realizado. Novo saldo: R$ ${novoSaldo}`
+      );
+    } else if (
+      transactionType === "Saque" ||
+      transactionType === "Transferencia"
+    ) {
+      novoSaldo -= valorNumber;
+      console.log(
+        `Depósito de R$ ${valorNumber} realizado. Novo saldo: R$ ${novoSaldo}`
+      );
+    }
+    setSaldo(novoSaldo);
+    alert(
+      `Nova transação: ${transactionType} de R$ ${Number(valor).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`
+    );
+    setTransactionType("");
+    setValor("");
   };
 
   return (
@@ -44,6 +78,8 @@ const NewTransaction: React.FC = () => {
         </label>
         <NumericFormat
           id="transactionValue"
+          value={valor}
+          onValueChange={handleValueChange}
           thousandSeparator="."
           decimalSeparator=","
           prefix="R$ "

@@ -15,6 +15,16 @@
   background-size: 100px, 100px, 250px;
 }
 
+@media (max-width: 360px) {
+  .card-decor {
+    background-image: url("/assets/bg-left.svg"), url("/assets/bg-right.svg");
+    background-size: 100px, 100px;
+    background-position:
+      left bottom,
+      right top;
+  }
+}
+
 .title-card {
   font-family: "Inter", sans-serif;
   font-weight: 700;

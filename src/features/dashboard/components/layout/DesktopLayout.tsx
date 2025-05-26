@@ -1,6 +1,10 @@
+"use client";
+
 import NewTransaction from "../newTransaction/newTransaction";
+import React, { useState } from "react";
 
 export default function DesktopLayout() {
+  const [saldo, setSaldo] = useState(2500);
   return (
     <div className="min-h-screen w-full bg-neutral-100 font-sans">
       {/* Wrapper to apply outer spacing as shown in the design spec */}
@@ -30,7 +34,7 @@ export default function DesktopLayout() {
             </div>
 
             {/* <div className="rounded-md bg-neutral-500/10 p-6 text-sm shadow-md"> */}
-            <NewTransaction />
+            <NewTransaction saldo={saldo} setSaldo={setSaldo} />
             {/* </div> */}
           </section>
 
