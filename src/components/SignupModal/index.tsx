@@ -121,7 +121,7 @@ export default function SignupModal({
             disabled={
               !(form.name && form.email && form.password && acceptTerms)
             }
-            className="flex w-40 items-center justify-center rounded-md bg-red-500 py-2 text-sm font-semibold text-white hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-red-500"
+            className="bg-brand-accent hover:bg-brand-accent-hover disabled:bg-brand-accent-hover flex w-40 items-center justify-center rounded-md py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
             Criar conta
           </button>

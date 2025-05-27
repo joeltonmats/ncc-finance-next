@@ -101,7 +101,7 @@ export default function SigninModal({
           <button
             type="submit"
             disabled={!email || !password}
-            className="bg-button-primary flex w-40 items-center justify-center rounded-md py-2 text-sm font-semibold text-white hover:bg-green-700 disabled:opacity-50"
+            className="bg-button-primary hover:bg-button-primary-hover flex w-40 items-center justify-center rounded-md py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
             Acessar
           </button>
