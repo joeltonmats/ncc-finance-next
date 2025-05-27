@@ -22,13 +22,10 @@ export default function HomeHeader() {
           Bytebank
         </div>
       </div>
-      {
-        //<div className="text-brand-primary text-xl font-bold italic">Bytebank</div>
-      }
-      <nav className="text-brand-secondary hidden gap-6 text-sm font-medium md:flex">
-        <a href="#">{HEADER_CONSTANTS.about}</a>
-        <a href="#">{HEADER_CONSTANTS.services}</a>
-      </nav>
+      {/*<nav className="text-brand-secondary hidden gap-6 text-sm font-medium md:flex">
+          <a href="#">{HEADER_CONSTANTS.about}</a>
+          <a href="#">{HEADER_CONSTANTS.services}</a>
+        </nav>*/}
       <div className="mt-4 flex w-full gap-2 md:mt-0 md:w-auto md:justify-end">
         <button
           className="bg-brand-secondary rounded-md px-4 py-1 text-sm text-white"
