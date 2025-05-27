@@ -1,36 +1,160 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NCC Finance
+
+An initial MVP modern financial management platform built with [Next.js](https://nextjs.org), [TypeScript](https://www.typescriptlang.org/), [Prisma](https://www.prisma.io/), [NextAuth.js](https://next-auth.js.org/), and more.
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-org/ncc-finance.git
+cd ncc-finance
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure Prisma
+
+- Copy the example environment file and update the database URL:
+  ```bash
+  cp .env.example .env
+  ```
+- Edit `.env` and set your `NEXTAUTH_SECRET`.
+
+### 4. Run Prisma migrations
+
+```bash
+npx prisma migrate dev
+```
+
+### 5. Seed the database
+
+```bash
+npx prisma db seed
+```
+
+### 6. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+ncc-finance/
+├── .github/            # GitHub workflows and templates
+├── .husky/             # Husky git hooks
+├── .next/              # Next.js build output (auto-generated)
+├── .storybook/         # Storybook configuration for UI component development
+├── .vscode/            # VS Code editor settings and extensions
+├── docs/               # Project documentation and guides
+├── node_modules/       # Installed dependencies
+├── prisma/             # Prisma schema, migrations, and seed scripts
+├── public/             # Static assets (images, icons, etc.)
+├── src/                # Main source code for the application
+│   ├── app/            # Next.js app directory (routes, layouts, pages)
+│   ├── components/     # Reusable React components
+│   ├── constants/      # Application-wide constants
+│   ├── features/       # Feature-specific modules and logic
+│   ├── lib/            # Utility libraries and helpers
+│   ├── models/         # Data models and types
+│   ├── service/        # Service layer for business logic and API calls
+│   ├── stories/        # Storybook stories for UI components
+│   ├── types/          # Shared TypeScript types and interfaces
+│   └── setupTests.ts   # Test setup file
+├── tests/              # Code Coverage for the automated tests for the application
+├── .env                # Environment variable configuration
+├── .env.example        # Example environment variable configuration
+├── .eslintignore       # ESLint ignore rules
+├── .gitignore          # Git ignore rules
+├── .huskyrc            # Husky configuration
+├── .lintstagedrc       # Lint Staged configuration
+├── .nvmrc              # Node version manager configuration
+├── .prettierignore     # Prettier ignore rules
+├── .prettierrc.json    # Prettier configuration
+├── eslint.config.mjs   # ESLint configuration
+├── next-env.d.ts       # Next.js TypeScript environment definitions
+├── next.config.ts      # Next.js configuration
+├── package-lock.json   # Dependency lock file
+├── package.json        # Project metadata, scripts, and dependencies
+├── postcss.config.mjs  # PostCSS configuration
+├── README.md           # Project documentation
+├── tsconfig.json       # TypeScript configuration
+└── vitest.config.ts    # Vitest testing configuration
+```
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+| Script            | Description                                                                    |
+| ----------------- | ------------------------------------------------------------------------------ |
+| `check:node`      | Checks if Node.js version is 18 or higher before installing dependencies.      |
+| `preinstall`      | Runs the Node.js version check before installing dependencies.                 |
+| `dev`             | Starts the Next.js development server with Turbopack for fast refresh and HMR. |
+| `build`           | Builds the Next.js application for production.                                 |
+| `start`           | Starts the Next.js production server.                                          |
+| `lint`            | Runs ESLint to check for code quality and style issues.                        |
+| `lint:fix`        | Runs ESLint and automatically fixes fixable issues.                            |
+| `prettier:check`  | Checks code formatting in the `src` directory using Prettier.                  |
+| `storybook`       | Starts Storybook for developing and testing UI components in isolation.        |
+| `build-storybook` | Builds the static Storybook site for deployment.                               |
+| `commit`          | Starts Commitizen CLI for standardized commit messages.                        |
+| `test`            | Runs all tests using Vitest.                                                   |
+| `test:ui`         | Opens the Vitest UI for interactive test running.                              |
+| `test:coverage`   | Runs tests and generates a code coverage report.                               |
+| `prepare`         | Sets up Husky git hooks after installing dependencies.                         |
+| `prisma:migrate`  | Runs Prisma migrations in development.                                         |
+| `prisma:generate` | Generates Prisma client code from the schema.                                  |
+| `prisma:seed`     | Seeds the database with initial data using the seed script.                    |
+| `prisma:db-reset` | Resets the database and applies all migrations from scratch.                   |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Main Libraries & Tools
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Library/Tool                  | Purpose                                                               |
+| ----------------------------- | --------------------------------------------------------------------- |
+| **TypeScript**                | Type-safe JavaScript for scalable and maintainable development.       |
+| **Next.js**                   | React framework for SSR, routing, and API routes.                     |
+| **React**                     | Core UI library for building user interfaces.                         |
+| **Prisma**                    | Type-safe ORM for database access and migrations.                     |
+| **@prisma/client**            | Prisma's generated client for database queries.                       |
+| **NextAuth.js**               | Authentication for Next.js apps.                                      |
+| **@auth/prisma-adapter**      | Prisma adapter for NextAuth.js to persist user sessions and accounts. |
+| **Tailwind CSS**              | Utility-first CSS framework for rapid UI development.                 |
+| **Storybook**                 | Isolated UI component development and documentation environment.      |
+| **@storybook/nextjs**         | Storybook integration for Next.js projects.                           |
+| **@faker-js/faker**           | Generates fake data for testing and seeding.                          |
+| **Vitest**                    | Fast unit testing framework with Vite integration.                    |
+| **@testing-library/react**    | Utilities for testing React components with a user-centric approach.  |
+| **@testing-library/jest-dom** | Custom Jest matchers for asserting on DOM nodes.                      |
+| **Playwright**                | End-to-end browser testing for UI flows.                              |
+| **ESLint**                    | Linting for code quality and consistency.                             |
+| **Prettier**                  | Code formatter for consistent style.                                  |
+| **Commitizen**                | Standardizes commit messages for better readability and automation.   |
+| **Husky**                     | Git hooks for enforcing code quality before commits and pushes.       |
+| **Lint Staged**               | Runs linters and formatters on staged git files.                      |
+| **react-hot-toast**           | Toast notifications for user feedback.                                |
+| **@headlessui/react**         | Unstyled, accessible UI primitives for React.                         |
+| **@heroicons/react**          | Beautiful hand-crafted SVG icons for React.                           |
+| **bcrypt**                    | Password hashing for authentication.                                  |
+| **validator**                 | String validation and sanitization.                                   |
 
-## Deploy on Vercel
+## External Links
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **[Video Demo](https://google.com)**
+- **[Figma Design](https://google.com)**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contributors
+
+| Name              | GitHub Profile                                       | Profile Picture                                                                                                       |
+| ----------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Carlos Ferreira   | [@carlosrfjrdev](https://github.com/carlosrfjrdev)   | <img src="https://avatars.githubusercontent.com/u/107284563?v=4" width="40" height="40" style="border-radius:50%;" /> |
+| Joelton Matos     | [@joeltonmatos](https://github.com/joeltonmats)      | <img src="https://avatars.githubusercontent.com/u/4190757?v=4" width="40" height="40" style="border-radius:50%;" />   |
+| Larissa Rocha     | [@larisr](https://github.com/larisr)                 | <img src="https://avatars.githubusercontent.com/u/64704731?v=4" width="40" height="40" style="border-radius:50%;" />  |
+| Leonardo Medeiros | [@leomartinsm](https://github.com/leomartinsm)       | <img src="https://avatars.githubusercontent.com/u/20979905?v=4" width="40" height="40" style="border-radius:50%;" />  |
+| Ricardo Momberg   | [@ricardomomberg](https://github.com/RicardoMomberg) | <img src="https://avatars.githubusercontent.com/u/65039145?v=4" width="40" height="40" style="border-radius:50%;" />  |
