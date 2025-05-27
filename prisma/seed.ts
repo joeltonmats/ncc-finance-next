@@ -12,15 +12,14 @@ const users: UserBasicInfo[] = [
   { name: "Larissa Rocha", email: "larisr@ncc.com" },
   { name: "Leonardo Medeiros", email: "leomartinsm@ncc.com" },
   { name: "Ricardo Momberg", email: "ricardomomberg@ncc.com" },
+  { name: "Guest", email: "guest@ncc.com" },
 ];
 
 const regions: Record<string, string> = {
   brazilian: "BRL",
-  american: "USD",
-  european: "EUR",
 };
 
-const accountTypes = ["checking", "savings", "investment"];
+const accountTypes = ["checking"];
 const transactionTypes = ["deposit", "withdrawal", "transfer"];
 
 function randomTransaction(balanceId: string) {
@@ -54,7 +53,7 @@ async function main() {
     });
 
     // create balance
-    const numBalances = faker.helpers.arrayElement([1, 2, 3]);
+    const numBalances = faker.helpers.arrayElement([1]);
     for (let j = 0; j < numBalances; j++) {
       const balance = await prisma.balance.create({
         data: {

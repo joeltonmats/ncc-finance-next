@@ -2,16 +2,22 @@
 
 An initial MVP modern financial management platform built with [Next.js](https://nextjs.org), [TypeScript](https://www.typescriptlang.org/), [Prisma](https://www.prisma.io/), [NextAuth.js](https://next-auth.js.org/), and more.
 
+Includes authentication, database integration, Storybook-driven UI, and best practices for code quality and testing.
+
+Developed for Tech Challenge 1.
+
 ## Getting Started
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-org/ncc-finance.git
+git clone git@github.com:NewCode-Crafters/ncc-finance.git
 cd ncc-finance
 ```
 
 ### 2. Install dependencies
+
+> Pre-requirements: Node >= 18
 
 ```bash
 npm install
@@ -25,22 +31,44 @@ npm install
   ```
 - Edit `.env` and set your `NEXTAUTH_SECRET`.
 
+> How to: Generate the password by `npx auth secret`, then copy the value from `.env.local` to `NEXTAUTH_SECRET` in `.env` file. Also, you can delete the `.env.local` file, it is not necessary.
+
 ### 4. Run Prisma migrations
 
 ```bash
-npx prisma migrate dev
+npm run prisma:migrate
 ```
 
-### 5. Seed the database
+> Note: After the first time this step finishes, automatically will run the initial database seed.
 
-```bash
-npx prisma db seed
-```
-
-### 6. Run the development server
+### 5. Run the development server
 
 ```bash
 npm run dev
+```
+
+Then, Access `http://localhost:3000/`:
+
+- "Já tenho conta" Option - Fill the "Email" and "Senha" fields with the following credentials:
+  - Email: guest@ncc.com
+  - Password: ncc
+  - Select the "Access" button. The application will redirect to the home page, after success
+- "Abrir minha conta" option - Fill all fields with the proper information, then "Create conta" button
+  - The application will redirect to the sign in page, after success.
+  - Sign in with the data previously saved. The application will redirect to the home page, after success
+
+### 6. Additional Commands Seed the database(optional, only if decides to)
+
+A. Optional, only necessary if it custom the seed script.
+
+```bash
+npm run prisma:seed
+```
+
+B. Optional, it resets prisma DB, then you are able to generate seed using command `A`.
+
+```bash
+npm run prisma:db-reset
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view the app.
