@@ -3,6 +3,7 @@
 :root {
   /* Colors */
   --color-brand-primary: #004d61;
+  --color-brand-secondary: #47a138;
   --color-brand-gradient: linear-gradient(to bottom, #004d61, #ffffff);
   --color-brand-accent: #ff5031;
   --color-surface-muted: #dee9ea; /* Light gray */
@@ -135,6 +136,7 @@
 @theme {
   /* Colors */
   --color-brand-primary: #004d61;
+  --color-brand-secondary: #47a138;
   --color-brand-gradient: linear-gradient(to bottom, #004d61, #ffffff);
   --color-brand-accent: #ff5031;
   --color-surface-muted: #dee9ea; /* Light gray */

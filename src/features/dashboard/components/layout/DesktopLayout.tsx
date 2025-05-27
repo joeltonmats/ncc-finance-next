@@ -1,4 +1,19 @@
-export default function DesktopLayout() {
+"use client";
+
+import WelcomeCard from "@/components/WelcomeCard/WelcomeCard";
+import NewTransaction from "../newTransaction/newTransaction";
+import React, { useState } from "react";
+
+interface DesktopLayoutProps {
+  userName: string;
+  userBalance: number;
+}
+
+export default function DesktopLayout({
+  userName,
+  userBalance,
+}: DesktopLayoutProps) {
+  const [balance, setBalance] = useState(userBalance);
   return (
     <div className="min-h-screen w-full bg-neutral-100 font-sans">
       {/* Wrapper to apply outer spacing as shown in the design spec */}
@@ -8,43 +23,15 @@ export default function DesktopLayout() {
           <aside className="rounded-md bg-white p-4 shadow-md">
             <nav className="flex flex-col gap-3 text-sm font-medium text-neutral-900">
               <span className="text-brand-primary">Início</span>
-              <span className="hover:text-brand-primary">Transferências</span>
-              <span className="hover:text-brand-primary">Investimentos</span>
-              <span className="hover:text-brand-primary">Outros serviços</span>
             </nav>
           </aside>
 
           {/* Center */}
           <section className="flex flex-col gap-6">
-            <div className="bg-brand-primary rounded-md p-6 text-white shadow-md">
-              <h1 className="text-lg font-semibold">Olá, Joana! :)</h1>
-              <p className="text-sm">Quinta-feira, 03/09/2024</p>
-              <div className="mt-4 text-right text-sm">
-                <span className="mr-2">Saldo</span>
-                <div className="mt-1 border-t border-neutral-100 pt-1 text-xl font-bold">
-                  Conta Corrente R$ 2.500,00
-                </div>
-              </div>
-            </div>
+            <WelcomeCard name={userName} date={new Date()} balance={balance} />
 
-            <div className="rounded-md bg-neutral-500/10 p-6 text-sm shadow-md">
-              <h2 className="mb-4 font-semibold text-neutral-900">
-                Nova transação
-              </h2>
-              <div className="mb-4">
-                <label className="block pb-1">
-                  Selecione o tipo de transação
-                </label>
-                <div className="rounded border px-2 py-1">Dropdown here</div>
-              </div>
-              <div className="mb-4">
-                <label className="block pb-1">Valor</label>
-                <div className="rounded border px-2 py-1">00,00</div>
-              </div>
-              <button className="bg-brand-primary rounded px-4 py-2 text-white hover:opacity-90">
-                Concluir transação
-              </button>
-            </div>
+            {/* Card for making transactions */}
+            <NewTransaction balance={balance} setBalance={setBalance} />
           </section>
 
           {/* Extract */}
