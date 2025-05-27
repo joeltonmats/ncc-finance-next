@@ -37,7 +37,10 @@ export default function HomeFooter() {
           </div>
           <div className="flex items-center gap-4">
             <div className="flex content-center gap-2 text-neutral-300">
-              <span className="content-center">
+              <a
+                className="content-center"
+                href="https://www.instagram.com/fiapoficial/"
+              >
                 <Image
                   src="/assets/home/instagram.svg"
                   alt="Saldo oculto"
@@ -45,8 +48,11 @@ export default function HomeFooter() {
                   height="27"
                   priority={false}
                 />
-              </span>
-              <span className="content-center">
+              </a>
+              <a
+                className="content-center"
+                href="https://api.whatsapp.com/send?1=pt_BR&phone=5511981700028"
+              >
                 <Image
                   src="/assets/home/whatsapp.svg"
                   alt="Saldo oculto"
@@ -54,8 +60,11 @@ export default function HomeFooter() {
                   height="27"
                   priority={false}
                 />
-              </span>
-              <span className="content-center">
+              </a>
+              <a
+                className="content-center"
+                href="https://www.youtube.com/tvfiap"
+              >
                 <Image
                   src="/assets/home/youtube.svg"
                   alt="Saldo oculto"
@@ -63,7 +72,7 @@ export default function HomeFooter() {
                   height="20"
                   priority={false}
                 />
-              </span>
+              </a>
             </div>
           </div>
         </div>
