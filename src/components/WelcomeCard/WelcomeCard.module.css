@@ -1,0 +1,80 @@
+.block-saldo {
+  height: 350px;
+  padding: 24px;
+  border-radius: 8px;
+  background-image: url("/images/saldo-bg1.png"), url("/images/saldo-bg2.png");
+  background-position:
+    bottom left,
+    top right;
+  background-repeat: no-repeat;
+  background: #004d61;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.block-saldo h2 {
+  font-size: var(--fonte-t1);
+  margin: 0 0 24px 0;
+  font-family: "Inter", sans-serif;
+}
+
+.block-saldo time {
+  font-size: var(--fonte-t3);
+  font-family: "Inter", sans-serif;
+}
+
+.flex {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 100px;
+}
+
+.saldo-valor {
+  min-width: 180px;
+  font-family: "Inter", sans-serif;
+}
+
+.saldo-valor strong {
+  font-size: var(--fonte-t2);
+  font-family: "Inter", sans-serif;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #ff5031;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+}
+
+.eye-button {
+  background: none;
+  border: none;
+  margin-left: 16px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cc .valor {
+  display: block;
+  font-size: 30px;
+  font-family: "Inter", sans-serif;
+}
+
+@media (max-width: 950px) {
+  .block-saldo {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.title-welcome {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.subtitle-welcome {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+}
