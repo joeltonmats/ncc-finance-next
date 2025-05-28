@@ -6,9 +6,13 @@
   --color-brand-secondary: #47a138;
   --color-brand-gradient: linear-gradient(to bottom, #004d61, #ffffff);
   --color-brand-accent: #ff5031;
+  --color-brand-accent-hover: #e3472c;
   --color-surface-muted: #dee9ea; /* Light gray */
   --color-surface-default: #f8f8f8; /* Soft white */
   --color-surface-darkgray: #8b8b8b; /* Dark gray */
+
+  --color-button-primary: #47a138;
+  --color-button-primary-hover: #008236;
 
   --color-success: #16a34a;
   --color-error: #bf1313;
@@ -137,9 +141,13 @@
   --color-brand-secondary: #47a138;
   --color-brand-gradient: linear-gradient(to bottom, #004d61, #ffffff);
   --color-brand-accent: #ff5031;
+  --color-brand-accent-hover: #e3472c;
   --color-surface-muted: #dee9ea; /* Light gray */
   --color-surface-default: #f8f8f8; /* Soft white */
   --color-surface-darkgray: #8b8b8b; /* Dark gray */
+
+  --color-button-primary: #47a138;
+  --color-button-primary-hover: #008236;
 
   --color-success: #16a34a;
   --color-error: #bf1313;

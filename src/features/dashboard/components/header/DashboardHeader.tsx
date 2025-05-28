@@ -15,7 +15,7 @@ export default function DashboardHeader() {
         <span className="hidden md:block">Bem vindo(a), {userName}</span>
         {session && (
           <button
-            onClick={() => signOut({ callbackUrl: ROUTE_CONSTANTS.signin })}
+            onClick={() => signOut({ callbackUrl: ROUTE_CONSTANTS.home })}
             className="text-xs underline hover:text-gray-200"
           >
             {LINK_CONSTANTS.signout}
