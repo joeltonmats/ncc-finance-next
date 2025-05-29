@@ -3,6 +3,7 @@
 import WelcomeCard from "@/components/WelcomeCard/WelcomeCard";
 import NewTransaction from "../newTransaction/newTransaction";
 import React, { useState } from "react";
+import TransactionList from "@/components/Transactions/TransactionList/TransactionList";
 
 interface DesktopLayoutProps {
   userName: string;
@@ -36,13 +37,7 @@ export default function DesktopLayout({
 
           {/* Extract */}
           <aside className="flex flex-col gap-4 rounded-md bg-white p-4 shadow-md">
-            <h2 className="text-lg font-semibold">Extrato</h2>
-            <div className="text-sm text-[--color-neutral-900]">
-              <p>Novembro - Depósito - R$ 150 - 18/11/2022</p>
-              <p>Novembro - Depósito - R$ 100 - 21/11/2022</p>
-              <p>Novembro - Depósito - R$ 50 - 21/11/2022</p>
-              <p>Novembro - Transferência - -R$ 500 - 21/11/2022</p>
-            </div>
+            <TransactionList balanceId="" userId="" />
           </aside>
         </main>
       </div>

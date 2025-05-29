@@ -40,6 +40,7 @@ const NewTransaction: React.FC<NewTransactionProps> = ({
     ) {
       newBalance -= valueNumber;
     }
+
     setBalance(newBalance);
     alert(
       `Nova transação: ${transactionType} de R$ ${Number(valor).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`
