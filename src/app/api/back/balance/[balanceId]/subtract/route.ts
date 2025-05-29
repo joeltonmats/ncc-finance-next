@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { subtractBalance } from "@/service/balanceService";
 
-/* example: /api/back/balance/USER_ID/subtract */
-export async function PUT(
+/* example: /api/back/balance/[balanceId]/subtract
+ * patchSubtractAmountBalance
+ * Subtracts a specified amount from a user's balance.
+ * @param {NextRequest} req - The incoming request object containing the amount to subtract.
+ * @param {Object} params - The route parameters containing the balance ID.
+ * @returns {Promise<NextResponse>} JSON response containing the updated balance or an error message.
+ * @throws {Error} If the balance ID is missing or if the amount is not a number.
+ */
+export async function PATCH(
   req: NextRequest,
   { params }: { params: Promise<{ balanceId: string }> }
 ) {

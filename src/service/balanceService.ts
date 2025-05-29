@@ -19,8 +19,18 @@ export async function subtractBalance(
   amount: number
 ): Promise<number> {
   if (amount < 0) throw new Error("Amount must be positive");
-  const current = await getAmountBalance(balanceId);
-  if (amount > current) throw new Error("Insufficient balance");
+
+  // **TODO**: Verificar na regra de negócio se haverá tratativa
+  // de saldo negativo "Cheque especial"
+  // ou se não podera haver saldo negativo
+  //
+  // *Obtem Saldo Atual*
+  // const current = await getAmountBalance(balanceId);
+  // warning (verificar metodo de warning)
+  // if (amount > current) emitWarning("Insufficient balance");
+  // erro
+  // if (amount > current) throw new Error("Insufficient balance");
+
   await prisma.balance.updateMany({
     where: { id: balanceId ?? " " },
     data: { amount: { decrement: amount } },
@@ -58,10 +68,24 @@ export async function getAmountBalanceByUserID(
 
 export async function getBalanceByUserId(userId?: string) {
   try {
-    return await prisma.balance.findFirst({
+    console.log("Fetching balance for userId:", userId);
+    if (!userId) {
+      throw new Error("User ID is required to fetch balance");
+    }
+    // Fetch the first balance associated with the userId
+    // Using `findFirst` to ensure we get a balance even if there are multiple
+    // balances for the same user
+    const retorno = await prisma.balance.findFirst({
       where: { userId: userId ?? " " },
     });
-  } catch {
+    if (!retorno) {
+      throw new Error("Balance not found for the provided user ID");
+    }
+    console.log("Balance found:", retorno);
+    // Return the balance object
+    return retorno;
+  } catch (error) {
+    console.error("Error fetching balance by user ID:", error);
     throw new Error("Balance not found or database error");
   }
 }

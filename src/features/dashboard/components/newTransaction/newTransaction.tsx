@@ -1,17 +1,19 @@
 "use client";
-
 import React, { useState } from "react";
 import "./newTransaction.css"; // Import the CSS file for styling
 import { NumericFormat, NumberFormatValues } from "react-number-format";
+import { Balance } from "@/models/balance";
+
 interface NewTransactionProps {
-  balance: number;
-  setBalance: React.Dispatch<React.SetStateAction<number>>;
+  balance: Balance;
+  setBalance: React.Dispatch<React.SetStateAction<Balance>>;
 }
 
 const NewTransaction: React.FC<NewTransactionProps> = ({
   balance,
   setBalance,
 }) => {
+  const [userBalance] = useState(balance);
   const [transactionType, setTransactionType] = useState("");
   const [valor, setValor] = useState("");
 
@@ -25,28 +27,63 @@ const NewTransaction: React.FC<NewTransactionProps> = ({
     setValor(values.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const valueNumber = parseFloat(valor);
     if (!transactionType || !valueNumber) {
       alert("Selecione o tipo e informe um valor válido.");
       return;
     }
-    let newBalance = balance;
-    if (transactionType === "Deposito") {
-      newBalance += valueNumber;
-    } else if (
-      transactionType === "Saque" ||
-      transactionType === "Transferencia"
-    ) {
-      newBalance -= valueNumber;
-    }
+    try {
+      console.error(`/api/back/transactions/${userBalance.id}`);
+      await fetch(`/api/back/transactions/${userBalance.id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          transactionType,
+          amount: valueNumber,
+          description: `${transactionType} no valor de R$ ${valueNumber.toFixed(2)}`,
+        }),
+      });
 
-    setBalance(newBalance);
-    alert(
-      `Nova transação: ${transactionType} de R$ ${Number(valor).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`
-    );
-    setTransactionType("");
-    setValor("");
+      if (transactionType === "Deposito") {
+        await fetch(`/api/back/balance/${userBalance.id}/add`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ amount: valueNumber }),
+        });
+      } else if (
+        transactionType === "Saque" ||
+        transactionType === "Transferencia"
+      ) {
+        await fetch(`/api/back/balance/${userBalance.id}/subtract`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ amount: valueNumber }),
+        });
+      }
+      const response = await fetch(`/api/back/balance/${userBalance.id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const updatedBalance = await response.json();
+      setBalance(updatedBalance ?? balance);
+      alert(
+        `Nova transação: ${transactionType} de R$ ${Number(valor).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`
+      );
+      setTransactionType("");
+      setValor("");
+    } catch (error) {
+      console.error("Erro ao criar transação:", error);
+      alert("Erro ao criar transação.");
+    }
   };
 
   return (

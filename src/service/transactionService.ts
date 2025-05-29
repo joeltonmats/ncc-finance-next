@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/prisma";
-import { getUserBalances, getUserById } from "@/service/userService";
 import { ERROR_CONSTANTS } from "@/constants";
 
 export async function getAllTransactions() {
@@ -12,6 +11,7 @@ export async function getAllTransactions() {
           currency: true,
           user: {
             select: {
+              id: true,
               name: true,
               email: true,
             },
@@ -25,7 +25,7 @@ export async function getAllTransactions() {
 }
 
 export type NewTransactionRequest = {
-  userId: string;
+  balanceId: string;
   transactionType: string;
   amount: number;
   description: string;
@@ -47,16 +47,21 @@ export async function createTransaction(
 }
 
 async function getTransactionInput(input: NewTransactionRequest) {
-  const userBalance = (await getUserBalances(input.userId))[0];
-  const user = await getUserById(input.userId);
-  if (!user) {
-    throw new Error(`Usuário com ID ${input.userId} não encontrado`);
-  }
   return {
-    balanceId: userBalance.id,
+    balanceId: input.balanceId,
     type: input.transactionType,
     amount: input.amount,
     timestamp: new Date(),
-    description: `${input.transactionType} de ${user.name} no valor de ${input.amount}`,
+    description: `${input.transactionType} no valor de ${input.amount}`,
   };
+}
+
+export async function getTransactionsByBalanceId(balanceId?: string) {
+  try {
+    return await prisma.transaction.findMany({
+      where: { balanceId: balanceId ?? " " },
+    });
+  } catch {
+    throw new Error("Balance not found or database error");
+  }
 }
