@@ -79,6 +79,7 @@ const NewTransaction: React.FC<NewTransactionProps> = ({
       );
       setTransactionType("");
       setValor("");
+      window.location.reload();
     } catch (error) {
       console.error("Erro ao criar transação:", error);
       alert("Erro ao criar transação.");

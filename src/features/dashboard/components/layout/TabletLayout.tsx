@@ -3,6 +3,7 @@ import WelcomeCard from "@/components/WelcomeCard/WelcomeCard";
 import NewTransaction from "../newTransaction/newTransaction";
 import React, { useState } from "react";
 import { Balance } from "@/models/balance";
+import TransactionList from "@/components/Transactions/TransactionList/TransactionList";
 
 interface TabletLayoutProps {
   userName: string;
@@ -38,10 +39,10 @@ export default function TabletLayout({ userName, balance }: TabletLayoutProps) {
         </section>
 
         <aside className="col-span-2 rounded-md bg-white p-4 shadow-md">
-          <h2 className="text-lg font-semibold">Extrato</h2>
-          <div className="mt-2 text-sm text-neutral-900">
-            <p>Novembro - Depósito - R$ 150 - 18/11/2022</p>
-            <p>Novembro - Transferência - -R$ 500 - 21/11/2022</p>
+          <div className="col-span-2 flex justify-center">
+            <div className="w-1/2 rounded-md bg-white p-4">
+              <TransactionList balance={userBalance} />
+            </div>
           </div>
         </aside>
       </main>
