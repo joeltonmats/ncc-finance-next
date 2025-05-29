@@ -15,10 +15,11 @@ export default async function Dashboard() {
   if (!session) {
     redirect(ROUTE_CONSTANTS.signin);
   }
+  const sessionUserId = session.user.id;
 
-  const user = await getUserById(session.user.id);
+  const user = await getUserById(sessionUserId);
 
-  const balance = await getBalanceByUserId(session.user.id);
+  const balance = await getBalanceByUserId(sessionUserId);
 
   console.log("User:", user);
   console.log("Balance:", balance);

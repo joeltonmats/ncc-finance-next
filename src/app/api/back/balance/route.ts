@@ -1,6 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-import { getAllBalances } from "@/service/balanceService";
+import {
+  createBalanceForUserId,
+  getAllBalances,
+} from "@/service/balanceService";
 
 /* example: /api/back/balance
  * getAllBalances
@@ -11,4 +14,22 @@ import { getAllBalances } from "@/service/balanceService";
 export async function GET() {
   const balances = await getAllBalances();
   return NextResponse.json(balances);
+}
+
+export async function POST(req: NextRequest) {
+  const balanceData = await req.json();
+  try {
+    await createBalanceForUserId(balanceData.userId);
+
+    return NextResponse.json(
+      { message: "Balance created successfully" },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error("Error creating balance:", error);
+    return NextResponse.json(
+      { error: "Failed to create balance" },
+      { status: 500 }
+    );
+  }
 }

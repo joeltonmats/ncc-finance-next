@@ -34,7 +34,6 @@ const NewTransaction: React.FC<NewTransactionProps> = ({
       return;
     }
     try {
-      console.error(`/api/back/transactions/${userBalance.id}`);
       await fetch(`/api/back/transactions/${userBalance.id}`, {
         method: "POST",
         headers: {

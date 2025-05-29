@@ -51,6 +51,18 @@ export default function SignupModal({
       });
 
       if (res.ok) {
+        //Creating balance
+        const user = await res.json();
+        //console.log("User created:", user);
+        if (!user || !user.id) {
+          toast.error("Error to create an account");
+          return;
+        }
+        await fetch("/api/back/balance", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId: user.id }),
+        });
         toast.success("Success to create account.");
         router.push(ROUTE_CONSTANTS.signin);
       } else {

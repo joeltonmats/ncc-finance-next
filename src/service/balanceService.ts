@@ -72,9 +72,7 @@ export async function getBalanceByUserId(userId?: string) {
     if (!userId) {
       throw new Error("User ID is required to fetch balance");
     }
-    // Fetch the first balance associated with the userId
-    // Using `findFirst` to ensure we get a balance even if there are multiple
-    // balances for the same user
+
     const retorno = await prisma.balance.findFirst({
       where: { userId: userId ?? " " },
     });
@@ -101,4 +99,38 @@ export async function getBalanceById(balanceId?: string) {
   return prisma.balance.findUnique({
     where: { id: balanceId ?? " " },
   });
+}
+
+export type NewBalance = {
+  userId: string;
+  accountType: string;
+  amount: number;
+  currency: string;
+};
+
+export async function createBalanceForUserId(userId: string) {
+  try {
+    if (!userId) {
+      throw new Error("User ID is required to create a balance");
+    }
+    console.log("Creating balance for userId:", userId);
+
+    const newBalance = await getNewBalanceForUserId(userId);
+    const balance = await prisma.balance.create({
+      data: newBalance,
+    });
+    return balance;
+  } catch (error) {
+    console.log("Erro ao Criar Balanço", error);
+    return { error: "Erro ao Criar Balanço" };
+  }
+}
+
+async function getNewBalanceForUserId(input: string) {
+  return {
+    userId: input,
+    accountType: "checking",
+    amount: 0, // Initial amount set to 0
+    currency: "BRL", // Default currency set to Brazilian Real
+  };
 }
