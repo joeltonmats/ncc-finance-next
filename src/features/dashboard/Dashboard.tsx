@@ -6,7 +6,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { ROUTE_CONSTANTS } from "@/constants";
-import { getUserBalances, getUserById } from "@/service/userService";
+import { getUserById } from "@/service/userService";
+import { getBalanceByUserId } from "@/service/balanceService";
 
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
@@ -14,14 +15,14 @@ export default async function Dashboard() {
   if (!session) {
     redirect(ROUTE_CONSTANTS.signin);
   }
+  const sessionUserId = session.user.id;
 
-  const user = await getUserById(session.user.id);
+  const user = await getUserById(sessionUserId);
 
-  const balances = await getUserBalances(session.user.id);
+  const balance = await getBalanceByUserId(sessionUserId);
 
-  const totalBalance = balances
-    .filter((b) => b.currency === "BRL")
-    .reduce((sum, b) => sum + b.amount, 0);
+  console.log("User:", user);
+  console.log("Balance:", balance);
 
   return (
     <>
@@ -30,21 +31,45 @@ export default async function Dashboard() {
         <div className="hidden lg:block">
           <DesktopLayout
             userName={user?.name ?? "Usuário"}
-            userBalance={totalBalance}
+            balance={
+              balance ?? {
+                id: "",
+                userId: "",
+                accountType: "",
+                amount: 0,
+                currency: "",
+              }
+            }
           />
         </div>
 
         <div className="hidden md:block lg:hidden">
           <TabletLayout
             userName={user?.name ?? "Usuário"}
-            userBalance={totalBalance}
+            balance={
+              balance ?? {
+                id: "",
+                userId: "",
+                accountType: "",
+                amount: 0,
+                currency: "",
+              }
+            }
           />
         </div>
 
         <div className="block md:hidden">
           <MobileLayout
             userName={user?.name ?? "Usuário"}
-            userBalance={totalBalance}
+            balance={
+              balance ?? {
+                id: "",
+                userId: "",
+                accountType: "",
+                amount: 0,
+                currency: "",
+              }
+            }
           />
         </div>
       </div>

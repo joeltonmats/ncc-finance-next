@@ -23,4 +23,7 @@ export const LINK_CONSTANTS = {
 
 export const ERROR_CONSTANTS = {
   createUser: "Error to create the user",
+  createTransaction: "Error to create transaction",
 };
+
+export const DEFAULT_USER_ID = "default-user-id";

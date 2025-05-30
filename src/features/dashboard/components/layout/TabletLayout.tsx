@@ -2,17 +2,16 @@
 import WelcomeCard from "@/components/WelcomeCard/WelcomeCard";
 import NewTransaction from "../newTransaction/newTransaction";
 import React, { useState } from "react";
+import { Balance } from "@/models/balance";
+import TransactionList from "@/components/Transactions/TransactionList/TransactionList";
 
 interface TabletLayoutProps {
   userName: string;
-  userBalance: number;
+  balance: Balance;
 }
 
-export default function TabletLayout({
-  userName,
-  userBalance,
-}: TabletLayoutProps) {
-  const [balance, setBalance] = useState(userBalance);
+export default function TabletLayout({ userName, balance }: TabletLayoutProps) {
+  const [userBalance, setBalance] = useState(balance);
 
   return (
     <div className="min-h-screen bg-neutral-100 font-sans">
@@ -28,18 +27,22 @@ export default function TabletLayout({
       <main className="grid grid-cols-2 gap-4 p-4">
         <section className="col-span-2 flex flex-col gap-4">
           <div className="bg-brand-primary rounded-md p-4 text-white shadow-md">
-            <WelcomeCard name={userName} date={new Date()} balance={balance} />
+            <WelcomeCard
+              name={userName}
+              date={new Date()}
+              balance={userBalance.amount}
+            />
           </div>
 
           {/* Card for making transactions */}
-          <NewTransaction balance={balance} setBalance={setBalance} />
+          <NewTransaction balance={userBalance} setBalance={setBalance} />
         </section>
 
         <aside className="col-span-2 rounded-md bg-white p-4 shadow-md">
-          <h2 className="text-lg font-semibold">Extrato</h2>
-          <div className="mt-2 text-sm text-neutral-900">
-            <p>Novembro - Depósito - R$ 150 - 18/11/2022</p>
-            <p>Novembro - Transferência - -R$ 500 - 21/11/2022</p>
+          <div className="col-span-2 flex justify-center">
+            <div className="w-1/2 rounded-md bg-white p-4">
+              <TransactionList balance={userBalance} />
+            </div>
           </div>
         </aside>
       </main>
