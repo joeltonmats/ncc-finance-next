@@ -8,11 +8,12 @@ import {
 } from "@headlessui/react";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { NumericFormat, NumberFormatValues } from "react-number-format";
-import { Balance } from "@/models/balance";
+
 import { TransactionTypeEnum, TransactionTypeLabels } from "@/types";
 import { translateTransactionType } from "@/helpers";
 import toast from "react-hot-toast";
 import "./newTransaction.css"; // Import the CSS file for styling
+import { Balance } from "@/types/balance";
 
 interface NewTransactionProps {
   balance: Balance;
