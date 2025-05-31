@@ -96,14 +96,6 @@ export default function DashboardHeader() {
             >
               Início
             </button>
-
-            <button className="border-b border-black py-2">
-              Transferências
-            </button>
-            <button className="border-b border-black py-2">
-              Investimentos
-            </button>
-            <button className="py-2">Outros serviços</button>
           </div>
         </div>
       )}
