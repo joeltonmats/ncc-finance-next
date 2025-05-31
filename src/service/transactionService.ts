@@ -40,8 +40,7 @@ export async function createTransaction(
       data: transactionToInput,
     });
     return transaction;
-  } catch (error) {
-    console.log(ERROR_CONSTANTS.createTransaction, error);
+  } catch {
     return { error: ERROR_CONSTANTS.createTransaction };
   }
 }

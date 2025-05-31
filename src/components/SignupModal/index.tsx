@@ -53,7 +53,7 @@ export default function SignupModal({
       if (res.ok) {
         //Creating balance
         const user = await res.json();
-        //console.log("User created:", user);
+
         if (!user || !user.id) {
           toast.error("Error to create an account");
           return;

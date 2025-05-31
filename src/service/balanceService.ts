@@ -68,7 +68,6 @@ export async function getAmountBalanceByUserID(
 
 export async function getBalanceByUserId(userId?: string) {
   try {
-    console.log("Fetching balance for userId:", userId);
     if (!userId) {
       throw new Error("User ID is required to fetch balance");
     }
@@ -79,7 +78,7 @@ export async function getBalanceByUserId(userId?: string) {
     if (!retorno) {
       throw new Error("Balance not found for the provided user ID");
     }
-    console.log("Balance found:", retorno);
+
     // Return the balance object
     return retorno;
   } catch (error) {
@@ -113,15 +112,13 @@ export async function createBalanceForUserId(userId: string) {
     if (!userId) {
       throw new Error("User ID is required to create a balance");
     }
-    console.log("Creating balance for userId:", userId);
 
     const newBalance = await getNewBalanceForUserId(userId);
     const balance = await prisma.balance.create({
       data: newBalance,
     });
     return balance;
-  } catch (error) {
-    console.log("Erro ao Criar Balanço", error);
+  } catch {
     return { error: "Erro ao Criar Balanço" };
   }
 }

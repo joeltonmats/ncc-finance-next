@@ -6,6 +6,4 @@ export const useSession = () => ({
   },
 });
 
-export const signOut = () => {
-  console.log("Mock signOut called");
-};
+export const signOut = () => {};

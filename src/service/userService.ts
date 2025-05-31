@@ -1,4 +1,3 @@
-import { ERROR_CONSTANTS } from "@/constants";
 import { prisma } from "@/lib/prisma";
 import { hash } from "bcrypt";
 
@@ -25,8 +24,7 @@ export async function createUser(data: CreateUserInput) {
       data: { name, email, password: hashed },
     });
     return { id: user.id };
-  } catch (error) {
-    console.log(ERROR_CONSTANTS.createUser, error);
+  } catch {
     return { error: "Could not create user" };
   }
 }

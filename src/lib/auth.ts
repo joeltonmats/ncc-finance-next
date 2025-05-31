@@ -29,8 +29,6 @@ export const authOptions: NextAuthOptions = {
           where: { email: email },
         });
 
-        console.log("✅ user: ", user);
-
         if (!user || !(await compare(password, user.password))) {
           return null;
         }

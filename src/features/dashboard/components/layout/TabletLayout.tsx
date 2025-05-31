@@ -18,9 +18,6 @@ export default function TabletLayout({ userName, balance }: TabletLayoutProps) {
       {/* Top navigation */}
       <nav className="flex justify-around border-b bg-white py-2 text-sm font-medium text-[--color-neutral-900]">
         <span className="text-brand-primary underline">Início</span>
-        <span className="hover:underline">Transferências</span>
-        <span className="hover:underline">Investimentos</span>
-        <span className="hover:underline">Outros serviços</span>
       </nav>
 
       {/* Content */}

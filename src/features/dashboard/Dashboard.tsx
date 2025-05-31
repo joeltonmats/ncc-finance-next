@@ -21,9 +21,6 @@ export default async function Dashboard() {
 
   const balance = await getBalanceByUserId(sessionUserId);
 
-  console.log("User:", user);
-  console.log("Balance:", balance);
-
   return (
     <>
       <DashboardHeader />
