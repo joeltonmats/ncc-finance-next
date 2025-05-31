@@ -24,7 +24,7 @@ export default function DesktopLayout({
           {/* Sidebar */}
           <aside className="rounded-md bg-white p-4 shadow-md">
             <nav className="flex flex-col gap-3 text-sm font-medium text-neutral-900">
-              <span className="text-brand-primary">Início</span>
+              <span className="text-brand-primary underline">Início</span>
             </nav>
           </aside>
 
