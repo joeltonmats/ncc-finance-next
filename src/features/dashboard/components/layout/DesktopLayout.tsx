@@ -17,7 +17,7 @@ export default function DesktopLayout({
 }: DesktopLayoutProps) {
   const [userBalance, setBalance] = useState(balance);
   return (
-    <div className="min-h-screen w-full bg-neutral-100 font-sans">
+    <div className="min-h-screen w-full font-sans">
       {/* Wrapper to apply outer spacing as shown in the design spec */}
       <div className="mx-auto max-w-[1440px] px-10 py-6">
         <main className="grid grid-cols-[220px_1fr_320px] gap-6">

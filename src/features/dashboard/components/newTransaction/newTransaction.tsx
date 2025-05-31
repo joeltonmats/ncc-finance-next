@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import "./newTransaction.css"; // Import the CSS file for styling
 import { NumericFormat, NumberFormatValues } from "react-number-format";
 import { Balance } from "@/models/balance";
-
+import { TransactionTypeEnum, TransactionTypeLabels } from "@/types";
+import { translateTransactionType } from "@/helpers";
+import toast from "react-hot-toast";
 interface NewTransactionProps {
   balance: Balance;
   setBalance: React.Dispatch<React.SetStateAction<Balance>>;
@@ -30,7 +32,7 @@ const NewTransaction: React.FC<NewTransactionProps> = ({
   const handleSubmit = async () => {
     const valueNumber = parseFloat(valor);
     if (!transactionType || !valueNumber) {
-      alert("Selecione o tipo e informe um valor válido.");
+      toast.error("Selecione o tipo de transação e um valor válido.");
       return;
     }
     try {
@@ -46,7 +48,7 @@ const NewTransaction: React.FC<NewTransactionProps> = ({
         }),
       });
 
-      if (transactionType === "Deposito") {
+      if (transactionType === TransactionTypeEnum.deposit) {
         await fetch(`/api/back/balance/${userBalance.id}/add`, {
           method: "PATCH",
           headers: {
@@ -55,8 +57,8 @@ const NewTransaction: React.FC<NewTransactionProps> = ({
           body: JSON.stringify({ amount: valueNumber }),
         });
       } else if (
-        transactionType === "Saque" ||
-        transactionType === "Transferencia"
+        transactionType === TransactionTypeEnum.withdrawal ||
+        transactionType === TransactionTypeEnum.transfer
       ) {
         await fetch(`/api/back/balance/${userBalance.id}/subtract`, {
           method: "PATCH",
@@ -74,15 +76,17 @@ const NewTransaction: React.FC<NewTransactionProps> = ({
       });
       const updatedBalance = await response.json();
       setBalance(updatedBalance ?? balance);
-      alert(
-        `Nova transação: ${transactionType} de R$ ${Number(valor).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`
+      toast.success(
+        `Sucesso! ${translateTransactionType(transactionType)} de R$ ${Number(valor).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`
       );
       setTransactionType("");
       setValor("");
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (error) {
       console.error("Erro ao criar transação:", error);
-      alert("Erro ao criar transação.");
+      toast.error("Error! Erro ao criar transação.");
     }
   };
 
@@ -101,9 +105,15 @@ const NewTransaction: React.FC<NewTransactionProps> = ({
             <option value="" disabled>
               Selecione o tipo de transação
             </option>
-            <option value="Deposito">Depósito</option>
-            <option value="Saque">Saque</option>
-            <option value="Transferencia">Transferência</option>
+            <option value={TransactionTypeEnum.deposit}>
+              {TransactionTypeLabels.deposit}
+            </option>
+            <option value={TransactionTypeEnum.withdrawal}>
+              {TransactionTypeLabels.withdrawal}
+            </option>
+            <option value={TransactionTypeEnum.transfer}>
+              {TransactionTypeLabels.transfer}
+            </option>
           </select>
         </div>
 
