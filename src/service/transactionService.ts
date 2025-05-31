@@ -8,10 +8,54 @@ export async function getAllTransactions() {
 
   return transactions;
 }
-export async function getTransactionById(transactionId?: string) {
+export async function getTransactionById(
+  transactionId?: string,
+  balanceId?: string
+) {
   return prisma.transaction.findUnique({
-    where: { id: transactionId ?? "DEFAULT_TRANSACTION_ID" },
+    where: {
+      id: transactionId ?? "DEFAULT_TRANSACTION_ID",
+      AND: { balanceId: balanceId ?? "DEFAULT_BALANCE_ID" },
+    },
   });
+}
+
+export async function deleteTransactionById(
+  transactionId?: string,
+  balanceId?: string
+) {
+  try {
+    return await prisma.transaction.delete({
+      where: {
+        id: transactionId ?? "DEFAULT_TRANSACTION_ID",
+        AND: { balanceId: balanceId ?? "DEFAULT_BALANCE_ID" },
+      },
+    });
+  } catch (error) {
+    console.error("Error deleting transaction:", error);
+    return { error: "Failed to delete transaction" };
+  }
+}
+
+export async function updateTransactionById(
+  transactionId: string,
+  balanceId: string,
+  transactionData: Partial<{
+    type: string;
+    amount: number;
+    timestamp: Date;
+    description: string;
+  }>
+) {
+  try {
+    return await prisma.transaction.update({
+      where: { id: transactionId, AND: { balanceId: balanceId } },
+      data: transactionData,
+    });
+  } catch (error) {
+    console.error("Error updating transaction:", error);
+    return { error: "Failed to update transaction" };
+  }
 }
 
 export type NewTransactionRequest = {

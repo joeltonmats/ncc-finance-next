@@ -36,45 +36,17 @@ const NewTransaction: React.FC<NewTransactionProps> = ({
       return;
     }
     try {
-      await fetch(`/api/back/transactions/${userBalance.id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          transactionType,
-          amount: valueNumber,
-          description: `${transactionType} no valor de R$ ${valueNumber.toFixed(2)}`,
-        }),
-      });
+      await createTransaction(userBalance, transactionType, valueNumber);
 
       if (transactionType === TransactionTypeEnum.deposit) {
-        await fetch(`/api/back/balance/${userBalance.id}/add`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ amount: valueNumber }),
-        });
+        await increaseBalanceValue(userBalance, valueNumber);
       } else if (
         transactionType === TransactionTypeEnum.withdrawal ||
         transactionType === TransactionTypeEnum.transfer
       ) {
-        await fetch(`/api/back/balance/${userBalance.id}/subtract`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ amount: valueNumber }),
-        });
+        await deductBalanceAmount(userBalance, valueNumber);
       }
-      const response = await fetch(`/api/back/balance/${userBalance.id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const updatedBalance = await response.json();
+      const updatedBalance = await fetchUpdatedBalance(userBalance);
       setBalance(updatedBalance ?? balance);
       toast.success(
         `Sucesso! ${translateTransactionType(transactionType)} de R$ ${Number(valor).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`
@@ -148,3 +120,52 @@ const NewTransaction: React.FC<NewTransactionProps> = ({
 };
 
 export default NewTransaction;
+
+async function createTransaction(
+  userBalance: Balance,
+  transactionType: string,
+  valueNumber: number
+) {
+  await fetch(`/api/back/transactions/${userBalance.id}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      transactionType,
+      amount: valueNumber,
+      description: `${transactionType} no valor de R$ ${valueNumber.toFixed(2)}`,
+    }),
+  });
+}
+
+async function increaseBalanceValue(userBalance: Balance, valueNumber: number) {
+  await fetch(`/api/back/balance/${userBalance.id}/add`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ amount: valueNumber }),
+  });
+}
+
+async function deductBalanceAmount(userBalance: Balance, valueNumber: number) {
+  await fetch(`/api/back/balance/${userBalance.id}/subtract`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ amount: valueNumber }),
+  });
+}
+
+async function fetchUpdatedBalance(userBalance: Balance) {
+  const response = await fetch(`/api/back/balance/${userBalance.id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const updatedBalance = await response.json();
+  return updatedBalance;
+}
