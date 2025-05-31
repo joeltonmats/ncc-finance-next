@@ -16,7 +16,7 @@ export default function TabletLayout({ userName, balance }: TabletLayoutProps) {
   return (
     <div className="min-h-screen font-sans">
       {/* Top navigation */}
-      <nav className="flex justify-around border-b py-2 text-sm font-medium text-[--color-neutral-900]">
+      <nav className="flex justify-around py-2 text-sm font-medium text-[--color-neutral-900]">
         <span className="text-brand-primary underline">Início</span>
       </nav>
 

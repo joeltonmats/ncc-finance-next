@@ -15,6 +15,7 @@ import toast from "react-hot-toast";
 import "./newTransaction.css"; // Import the CSS file for styling
 import { Balance } from "@/types/balance";
 
+
 interface NewTransactionProps {
   balance: Balance;
   setBalance: React.Dispatch<React.SetStateAction<Balance>>;
