@@ -88,7 +88,7 @@ export default function DashboardHeader() {
           >
             <MenuItems
               as="div"
-              className="fixed top-16 right-4 z-50 min-w-[180px] rounded-md bg-white py-2 text-sm text-neutral-900 shadow-lg focus:outline-none"
+              className="absolute right-0 z-50 mt-2 min-w-[180px] rounded-md bg-white py-2 text-sm text-neutral-900 shadow-lg focus:outline-none"
             >
               <div className="px-4 py-2 font-semibold text-black sm:inline md:hidden">
                 {userName}
