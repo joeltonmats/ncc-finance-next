@@ -8,16 +8,11 @@ import {
   UserCircleIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import {
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-  Transition,
-} from "@headlessui/react";
+import { MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react";
 import { animateScroll as scroll } from "react-scroll";
 
 import { LINK_CONSTANTS, ROUTE_CONSTANTS } from "@/constants";
+import CustomMenu from "@/components/CustomMenu";
 
 export default function DashboardHeader() {
   const { data: session } = useSession();
@@ -69,7 +64,7 @@ export default function DashboardHeader() {
         </div>
 
         {/* USer Dropdown */}
-        <Menu as="div" className="relative inline-block text-left">
+        <CustomMenu>
           <MenuButton className="flex items-center gap-2">
             <span className="hidden text-sm font-medium text-white md:inline">
               {userName}
@@ -109,7 +104,7 @@ export default function DashboardHeader() {
               </MenuItem>
             </MenuItems>
           </Transition>
-        </Menu>
+        </CustomMenu>
       </div>
 
       {/* Mobile Menu */}
