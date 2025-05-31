@@ -1,6 +1,6 @@
 .tw-card-background {
-  color: #cbcbcb;
   min-height: 400px;
+  background-color: #cbcbcb;
 }
 
 .card-decor {
@@ -38,9 +38,4 @@
   font-weight: 750;
   font-size: 18px;
   color: var(--color-brand-primary);
-}
-
-.dropdown-decor {
-  border-color: var(--color-brand-primary);
-  border: 1px;
 }

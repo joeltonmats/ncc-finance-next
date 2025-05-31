@@ -3,8 +3,8 @@ import Image from "next/image";
 
 export default function HomeFooter() {
   return (
-    <footer className="bg-neutral-900 px-4 py-10 text-white sm:px-6 md:px-16">
-      <div className="grid grid-cols-1 gap-8 text-sm sm:grid-cols-1 md:grid-cols-3">
+    <footer className="bg-neutral-900 px-6 py-10 text-white sm:px-6 md:px-8">
+      <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-8 text-sm md:grid-cols-3">
         <div>
           <h4 className="mb-2 font-semibold">Serviços</h4>
           <ul className="space-y-1 text-neutral-300">

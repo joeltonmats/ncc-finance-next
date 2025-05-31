@@ -26,38 +26,45 @@ const objects = [
   {
     title: "Seguro Dispositivos",
     icon: "/assets/home/dispositivos.svg",
-    alt: "Ícone com varios dispositivos sendo eles computador, tablet e laptop ",
+    alt: "Ícone com vários dispositivos sendo eles computador, tablet e laptop ",
     description:
       "Seus dispositivos móveis (computador e laptop) protegidos por uma mensalidade simbólica.",
   },
 ];
+
 export default function FeaturesSection() {
   return (
-    <section className="px-4 py-12 text-center sm:px-6 md:px-16">
+    <section className="px-4 py-4 text-center text-black sm:px-6 md:px-8">
       <h2 className="mb-8 text-lg font-semibold text-neutral-900">
         Vantagens do nosso banco:
       </h2>
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
-        {objects.map((item, i) => (
-          <div
-            key={i}
-            className="flex flex-col items-center justify-center gap-2"
-          >
-            <div className="h-12 w-12 rounded-full">
-              {/* Placeholder for icon */}
-              <div className="relative mt-3 h-10">
-                <Image
-                  src={item.icon}
-                  alt={item.alt}
-                  priority={false}
-                  fill={true}
-                />
+
+      <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
+        {objects.map((item, i) => {
+          return (
+            <div
+              key={i}
+              className="flex flex-col items-center justify-start gap-2 text-center"
+            >
+              <div className="h-12 w-12">
+                <div className="text-brand-secondary-strong relative mt-3 h-10">
+                  <Image
+                    src={item.icon}
+                    alt={item.alt}
+                    priority={false}
+                    fill={true}
+                  />
+                </div>
               </div>
+              <div className="font-semibold text-[color:var(--color-brand-secondary-strong)]">
+                {item.title}
+              </div>
+              <p className="text-text-subtle mx-auto min-h-[5.5rem] max-w-[40ch] text-sm leading-relaxed">
+                {item.description}
+              </p>
             </div>
-            <div className="font-semibold">{item.title}</div>
-            <p className="text-sm text-neutral-600">{item.description}</p>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
