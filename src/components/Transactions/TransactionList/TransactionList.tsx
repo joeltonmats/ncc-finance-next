@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Balance } from "@/models/balance";
+import { Balance } from "@/types/balance";
 import { translateTransactionType } from "@/helpers";
 import { TransactionTypeEnum } from "@/types";
 
@@ -73,7 +73,7 @@ export default function TransactionList({ balance }: TransactionListProps) {
     if (balance?.id) {
       fetchTransactions();
     }
-  }, [balance?.id]);
+  }, [balance, balance?.id]);
 
   return (
     <>
