@@ -24,7 +24,7 @@ export default async function Dashboard() {
   return (
     <>
       <DashboardHeader />
-      <div>
+      <div className="min-h-screen bg-[#E4EDE3] pt-16">
         <div className="hidden lg:block">
           <DesktopLayout
             userName={user?.name ?? "Usuário"}

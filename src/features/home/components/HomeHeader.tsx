@@ -7,6 +7,7 @@ import SignupModal from "@/components/SignupModal";
 import { HEADER_CONSTANTS, ROUTE_CONSTANTS } from "@/constants";
 import Image from "next/image";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { animateScroll as scroll } from "react-scroll";
 
 export default function HomeHeader() {
   const router = useRouter();
@@ -26,7 +27,7 @@ export default function HomeHeader() {
 
   return (
     <>
-      <header className="bg-black shadow-sm">
+      <header className="fixed top-0 right-0 left-0 z-50 bg-black shadow-sm">
         <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-4 sm:px-6 md:px-8">
           {/* Logo */}
           <div className="flex items-center gap-2">
@@ -38,7 +39,12 @@ export default function HomeHeader() {
                 height="27"
               />
             </div>
-            <div className="text-brand-secondary text-xl font-bold italic">
+            <div
+              className="text-brand-secondary cursor-pointer text-xl font-bold italic"
+              onClick={() =>
+                scroll.scrollToTop({ smooth: true, duration: 500 })
+              }
+            >
               Bytebank
             </div>
           </div>

@@ -15,6 +15,7 @@ import {
   MenuItems,
   Transition,
 } from "@headlessui/react";
+import { animateScroll as scroll } from "react-scroll";
 
 import { LINK_CONSTANTS, ROUTE_CONSTANTS } from "@/constants";
 
@@ -26,7 +27,7 @@ export default function DashboardHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-brand-primary relative flex h-16 items-center justify-between px-4 text-white sm:px-6 md:px-8 lg:px-10">
+    <header className="bg-brand-primary fixed top-0 right-0 left-0 z-50 flex h-16 items-center justify-between px-4 text-white sm:px-6 md:px-8 lg:px-10">
       <div className="flex items-center gap-4 md:gap-6">
         <button
           className="md:hidden"
@@ -39,7 +40,12 @@ export default function DashboardHeader() {
           )}
         </button>
 
-        <div className="text-base font-bold md:text-lg">Bytebank</div>
+        <div
+          className="cursor-pointer text-base font-bold md:text-lg"
+          onClick={() => scroll.scrollToTop({ smooth: true, duration: 500 })}
+        >
+          Bytebank
+        </div>
       </div>
 
       {/* USer Dropdown */}

@@ -14,9 +14,9 @@ export default function TabletLayout({ userName, balance }: TabletLayoutProps) {
   const [userBalance, setBalance] = useState(balance);
 
   return (
-    <div className="min-h-screen bg-neutral-100 font-sans">
+    <div className="min-h-screen font-sans">
       {/* Top navigation */}
-      <nav className="flex justify-around border-b bg-white py-2 text-sm font-medium text-[--color-neutral-900]">
+      <nav className="flex justify-around border-b py-2 text-sm font-medium text-[--color-neutral-900]">
         <span className="text-brand-primary underline">Início</span>
       </nav>
 
