@@ -4,24 +4,14 @@ import { ERROR_CONSTANTS } from "@/constants";
 export async function getAllTransactions() {
   const transactions = await prisma.transaction.findMany({
     orderBy: { timestamp: "desc" },
-    include: {
-      balance: {
-        select: {
-          accountType: true,
-          currency: true,
-          user: {
-            select: {
-              id: true,
-              name: true,
-              email: true,
-            },
-          },
-        },
-      },
-    },
   });
 
   return transactions;
+}
+export async function getTransactionById(transactionId?: string) {
+  return prisma.transaction.findUnique({
+    where: { id: transactionId ?? "DEFAULT_TRANSACTION_ID" },
+  });
 }
 
 export type NewTransactionRequest = {

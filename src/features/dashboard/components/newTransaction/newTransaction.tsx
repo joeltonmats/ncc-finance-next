@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "./newTransaction.css"; // Import the CSS file for styling
 import { NumericFormat, NumberFormatValues } from "react-number-format";
-import { Balance } from "@/models/balance";
+import { Balance } from "@/types/balance";
 import { TransactionTypeEnum, TransactionTypeLabels } from "@/types";
 import { translateTransactionType } from "@/helpers";
 import toast from "react-hot-toast";
