@@ -1,7 +1,7 @@
 import {
-  deleteTransactionById,
   getTransactionById,
-  updateTransactionById,
+  processDeleteTransaction,
+  processTransactionUpdate,
 } from "@/service/transactionService";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -72,7 +72,7 @@ export async function DELETE(
   }
 
   try {
-    const deletedTransaction = await deleteTransactionById(
+    const deletedTransaction = await processDeleteTransaction(
       balanceId,
       transactionId
     );
@@ -108,13 +108,19 @@ export async function PATCH(
       { status: 400 }
     );
   }
-
+  const oldTransaction = await getTransactionById(balanceId, transactionId);
+  if (!oldTransaction) {
+    return NextResponse.json(
+      { error: "Transaction not found" },
+      { status: 404 }
+    );
+  }
   try {
-    const transactionData = await req.json();
-    const updatedTransaction = await updateTransactionById(
+    const newTransaction = await req.json();
+    const updatedTransaction = await processTransactionUpdate(
       balanceId,
-      transactionId,
-      transactionData
+      oldTransaction,
+      newTransaction
     );
     return NextResponse.json(updatedTransaction, { status: 200 });
   } catch (error) {

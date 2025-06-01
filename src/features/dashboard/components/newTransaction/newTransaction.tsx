@@ -15,7 +15,6 @@ import toast from "react-hot-toast";
 import "./newTransaction.css"; // Import the CSS file for styling
 import { Balance } from "@/types/balance";
 
-
 interface NewTransactionProps {
   balance: Balance;
   setBalance: React.Dispatch<React.SetStateAction<Balance>>;
@@ -77,6 +76,7 @@ export default function NewTransaction({
             : "";
 
       if (balanceUrl) {
+        console.log("newTransaction body:", { amount: valueNumber });
         await fetch(`/api/back/balance/${userBalance.id}/${balanceUrl}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
