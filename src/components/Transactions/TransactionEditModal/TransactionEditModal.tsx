@@ -26,6 +26,7 @@ interface TransactionEditProps {
   transactionId: string;
   onClose: () => void;
   isOpen: boolean;
+  disabled?: boolean;
 }
 
 const transactionOptions = [
@@ -44,6 +45,7 @@ export default function TransactionEditModal({
   transactionId,
   onClose,
   isOpen = true, // Default to true if not provided
+  disabled = false,
 }: TransactionEditProps) {
   const [loading, setLoading] = useState(false);
   const [transaction, setTransaction] = useState<Transaction | null>(null);
@@ -59,6 +61,10 @@ export default function TransactionEditModal({
   } | null>(null);
 
   useEffect(() => {
+    if (disabled) {
+      return;
+    }
+
     const fetchTransaction = async () => {
       setLoading(true);
       setError(null);
@@ -90,7 +96,7 @@ export default function TransactionEditModal({
       }
     };
     fetchTransaction();
-  }, [balanceId, transactionId]);
+  }, [balanceId, transactionId, disabled]);
 
   const handleSaveTransaction = async () => {
     setLoading(true);
@@ -328,6 +334,7 @@ export default function TransactionEditModal({
                   <button
                     type="submit"
                     data-autofocus
+                    disabled={disabled}
                     onClick={handleSaveTransaction}
                     className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 sm:mt-0 sm:w-auto"
                   >

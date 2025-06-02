@@ -103,7 +103,6 @@ export default function NewTransaction({
 
       setTransactionType(null);
       setValor("");
-      setTimeout(() => window.location.reload(), 1000);
     } catch (error) {
       console.error("Erro ao criar transação:", error);
       toast.error("Erro ao criar transação.");

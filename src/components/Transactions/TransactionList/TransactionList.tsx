@@ -7,6 +7,7 @@ import TransactionEditModal from "../TransactionEditModal/TransactionEditModal";
 
 interface TransactionListProps {
   balance: Balance;
+  disableSelection?: boolean;
 }
 interface Transaction {
   id: string;
@@ -26,7 +27,10 @@ interface RawTransaction {
   description: string | null;
 }
 
-export default function TransactionList({ balance }: TransactionListProps) {
+export default function TransactionList({
+  balance,
+  disableSelection,
+}: TransactionListProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedTxId, setSelectedTxId] = useState<string | null>(null);
@@ -119,7 +123,11 @@ export default function TransactionList({ balance }: TransactionListProps) {
             <div
               key={tx.id}
               className="relative mb-2 flex cursor-pointer items-center rounded hover:bg-neutral-100"
-              onClick={() => handleTxClick(tx.id)}
+              onClick={() => {
+                if (!disableSelection) {
+                  handleTxClick(tx.id);
+                }
+              }}
             >
               <div className="flex flex-1 flex-col">
                 <div className="text-brand-secondary text-xs font-medium">
