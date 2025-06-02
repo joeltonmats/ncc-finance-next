@@ -186,4 +186,3 @@ ncc-finance/
 | Larissa Rocha     | [@larisr](https://github.com/larisr)                  | <img src="https://avatars.githubusercontent.com/u/64704731?v=4" width="40" height="40" style="border-radius:50%;" />  |
 | Leonardo Medeiros | [@leomartinsm](https://github.com/leomartinsm)        | <img src="https://avatars.githubusercontent.com/u/20979905?v=4" width="40" height="40" style="border-radius:50%;" />  |
 | Ricardo Momberg   | [@ricardomomberg](https://github.com/RicardoMomberg)  | <img src="https://avatars.githubusercontent.com/u/65039145?v=4" width="40" height="40" style="border-radius:50%;" />  |
-gi
