@@ -39,7 +39,7 @@ npm install
 npm run prisma:migrate
 ```
 
-> Nota: Após a primeira execução deste passo, o seed inicial do banco será executado automaticamente.
+> Nota: Após a primeira execução deste passo, o seed inicial do banco de dados será executado automaticamente.
 
 ### 5. Inicie o servidor de desenvolvimento
 
@@ -49,17 +49,17 @@ npm run dev
 
 Depois, acesse `http://localhost:3000/`:
 
-- Opção "Já tenho conta" - Preencha os campos "Email" e "Senha" com as credenciais:
+- Opção "Já tenho conta" - Preencha os campos "Email" e "Senha" com as credenciais abaixo:
   - Email: guest@ncc.com
   - Senha: ncc
-  - Selecione o botão "Acessar". O app irá redirecionar para a página inicial após o sucesso.
-- Opção "Abrir minha conta" - Preencha todos os campos com as informações solicitadas e clique em "Criar conta".
-  - O app irá redirecionar para a página de login após o sucesso.
-  - Faça login com os dados cadastrados. O app irá redirecionar para a página inicial após o sucesso.
+  - Selecione o botão "Acessar". O aplicativo irá redirecionar para a página inicial após o sucesso.
+- Opção "Abrir minha conta" - Preencha todos os campos com as informações necessárias e clique em "Criar conta".
+  - O aplicativo irá redirecionar para a página de login após o sucesso.
+  - Faça login com os dados cadastrados. O aplicativo irá redirecionar para a página inicial após o sucesso.
 
-### 6. Comandos Adicionais (opcional, apenas se necessário)
+### 6. Comandos Adicionais para Popular o Banco (opcional)
 
-A. Opcional, necessário apenas se customizar o script de seed.
+A. Opcional, necessário apenas se você personalizar o script de seed.
 
 ```bash
 npm run prisma:seed
@@ -73,30 +73,40 @@ npm run prisma:db-reset
 
 Abra [http://localhost:3000](http://localhost:3000) para visualizar o app.
 
+## Storybook
+
+Para rodar o Storybook
+
+```bash
+npm run storybook
+```
+
+Abra [http://localhost:6006/](http://localhost:3000) para visualizar os componentes.
+
 ## Estrutura do Projeto
 
 ```
 ncc-finance/
 ├── .github/            # Workflows e templates do GitHub
 ├── .husky/             # Hooks do Husky
-├── .next/              # Build do Next.js (gerado automaticamente)
-├── .storybook/         # Configuração do Storybook para UI
+├── .next/              # Saída de build do Next.js (gerado automaticamente)
+├── .storybook/         # Configuração do Storybook para desenvolvimento de UI
 ├── .vscode/            # Configurações e extensões do VS Code
 ├── docs/               # Documentação e guias do projeto
 ├── node_modules/       # Dependências instaladas
-├── prisma/             # Schema, migrações e seeds do Prisma
+├── prisma/             # Schema, migrações e scripts de seed do Prisma
 ├── public/             # Arquivos estáticos (imagens, ícones, etc.)
 ├── src/                # Código-fonte principal da aplicação
-│   ├── app/            # Diretório do app Next.js (rotas, layouts, páginas)
+│   ├── app/            # Diretório app do Next.js (rotas, layouts, páginas)
 │   ├── components/     # Componentes React reutilizáveis
-│   ├── constants/      # Constantes globais
-│   ├── features/       # Módulos e lógicas específicas de features
+│   ├── constants/      # Constantes globais da aplicação
+│   ├── features/       # Módulos e lógicas específicas de funcionalidades
 │   ├── lib/            # Bibliotecas utilitárias e helpers
 │   ├── models/         # Modelos e tipos de dados
 │   ├── service/        # Camada de serviços e chamadas de API
-│   ├── stories/        # Stories do Storybook para componentes UI
+│   ├── stories/        # Stories do Storybook para componentes de UI
 │   ├── types/          # Tipos e interfaces TypeScript compartilhados
-│   └── setupTests.ts   # Arquivo de setup de testes
+│   └── setupTests.ts   # Arquivo de configuração de testes
 ├── tests/              # Cobertura de código dos testes automatizados
 ├── .env                # Configuração de variáveis de ambiente
 ├── .env.example        # Exemplo de configuração de variáveis de ambiente
@@ -110,12 +120,12 @@ ncc-finance/
 ├── eslint.config.mjs   # Configuração do ESLint
 ├── next-env.d.ts       # Definições de ambiente TypeScript do Next.js
 ├── next.config.ts      # Configuração do Next.js
-├── package-lock.json   # Lockfile de dependências
+├── package-lock.json   # Arquivo de lock das dependências
 ├── package.json        # Metadados, scripts e dependências do projeto
 ├── postcss.config.mjs  # Configuração do PostCSS
 ├── README.md           # Documentação do projeto
 ├── tsconfig.json       # Configuração do TypeScript
-└── vitest.config.ts    # Configuração de testes Vitest
+└── vitest.config.ts    # Configuração de testes com Vitest
 ```
 
 ## Scripts
@@ -124,13 +134,13 @@ ncc-finance/
 | ----------------- | -------------------------------------------------------------------------------------- |
 | `check:node`      | Verifica se a versão do Node.js é 18 ou superior antes de instalar as dependências.    |
 | `preinstall`      | Executa a verificação da versão do Node.js antes de instalar as dependências.          |
-| `dev`             | Inicia o servidor de desenvolvimento Next.js com Turbopack para fast refresh e HMR.    |
+| `dev`             | Inicia o servidor de desenvolvimento Next.js com Turbopack para atualização rápida.    |
 | `build`           | Faz o build da aplicação Next.js para produção.                                        |
 | `start`           | Inicia o servidor Next.js em modo produção.                                            |
-| `lint`            | Executa o ESLint para checar qualidade e estilo do código.                             |
+| `lint`            | Executa o ESLint para verificar qualidade e estilo do código.                          |
 | `lint:fix`        | Executa o ESLint e corrige automaticamente os problemas corrigíveis.                   |
 | `prettier:check`  | Verifica a formatação do código no diretório `src` usando o Prettier.                  |
-| `storybook`       | Inicia o Storybook para desenvolvimento e testes de componentes UI isolados.           |
+| `storybook`       | Inicia o Storybook para desenvolvimento e testes de componentes de UI isolados.        |
 | `build-storybook` | Gera o site estático do Storybook para deploy.                                         |
 | `commit`          | Inicia o Commitizen CLI para mensagens de commit padronizadas.                         |
 | `test`            | Executa todos os testes usando o Vitest.                                               |
@@ -149,33 +159,34 @@ ncc-finance/
 | **TypeScript**                  | JavaScript tipado para desenvolvimento escalável e sustentável.            |
 | **Next.js**                     | Framework React para SSR, roteamento e rotas de API.                      |
 | **React**                       | Biblioteca principal para construção de interfaces de usuário.             |
-| **Prisma**                      | ORM tipado para acesso ao banco de dados e migrações.                     |
-| **@prisma/client**              | Client gerado pelo Prisma para consultas ao banco de dados.                |
-| **NextAuth.js**                 | Autenticação para apps Next.js.                                            |
-| **@auth/prisma-adapter**        | Adaptador Prisma para NextAuth.js para persistir sessões e contas.         |
+| **Prisma**                      | ORM tipado para acesso e migração de banco de dados.                      |
+| **@prisma/client**              | Cliente gerado pelo Prisma para consultas ao banco de dados.               |
+| **NextAuth.js**                 | Autenticação para aplicações Next.js.                                      |
+| **@auth/prisma-adapter**        | Adaptador Prisma para NextAuth.js para persistência de sessões e contas.   |
 | **Tailwind CSS**                | Framework CSS utilitário para desenvolvimento rápido de UI.                |
-| **Storybook**                   | Ambiente isolado para desenvolvimento e documentação de componentes UI.    |
+| **Storybook**                   | Ambiente isolado para desenvolvimento e documentação de componentes de UI. |
 | **@storybook/nextjs**           | Integração do Storybook para projetos Next.js.                             |
-| **@faker-js/faker**             | Geração de dados fake para testes e seeds.                                 |
+| **@faker-js/faker**             | Geração de dados falsos para testes e seed.                                |
 | **Vitest**                      | Framework de testes unitários rápido com integração Vite.                  |
 | **@testing-library/react**      | Utilitários para testar componentes React com foco no usuário.             |
-| **@testing-library/jest-dom**   | Matchers customizados do Jest para asserções no DOM.                       |
-| **Playwright**                  | Testes de ponta a ponta para fluxos de UI.                                 |
+| **@testing-library/jest-dom**   | Matchers personalizados do Jest para asserções em elementos DOM.           |
+| **Playwright**                  | Testes de ponta a ponta para fluxos de UI em navegador.                    |
 | **ESLint**                      | Linter para qualidade e consistência do código.                            |
 | **Prettier**                    | Formatador de código para estilo consistente.                              |
 | **Commitizen**                  | Padroniza mensagens de commit para melhor legibilidade e automação.        |
 | **Husky**                       | Hooks do Git para garantir qualidade antes de commits e push.              |
-| **Lint Staged**                 | Executa linters e formatadores nos arquivos staged do git.                 |
+| **Lint Staged**                 | Executa linters e formatadores nos arquivos em stage do git.               |
 | **react-hot-toast**             | Notificações toast para feedback ao usuário.                               |
-| **@headlessui/react**           | Primitivas UI acessíveis e sem estilo para React.                          |
-| **@heroicons/react**            | Ícones SVG artesanais e bonitos para React.                                |
-| **bcrypt**                      | Hash de senha para autenticação.                                           |
+| **@headlessui/react**           | Primitivas de UI acessíveis e sem estilo para React.                       |
+| **@heroicons/react**            | Ícones SVG artesanais para React.                                          |
+| **bcrypt**                      | Hash de senhas para autenticação.                                          |
 | **validator**                   | Validação e sanitização de strings.                                        |
 
 ## Links Externos
 
 - **[Demo em Vídeo](https://youtu.be/UGIQPmgKfcw)**
 - **[Design no Figma](https://www.figma.com/design/Z8ArLKonyv79d1eJIG6aE6/NCC-v.1?node-id=12085-1622&m=dev&t=V5sTdCtx3KMC54AK-1)**
+  
 
 ## Contribuidores
 
