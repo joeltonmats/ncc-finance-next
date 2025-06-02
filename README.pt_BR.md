@@ -1,188 +1,189 @@
 # NCC Finance
 
-An initial MVP modern financial management platform built with [Next.js](https://nextjs.org), [TypeScript](https://www.typescriptlang.org/), [Prisma](https://www.prisma.io/), [NextAuth.js](https://next-auth.js.org/), and more.
+Uma plataforma moderna de gestão financeira (MVP inicial) construída com [Next.js](https://nextjs.org), [TypeScript](https://www.typescriptlang.org/), [Prisma](https://www.prisma.io/), [NextAuth.js](https://next-auth.js.org/) e mais.
 
-Includes authentication, database integration, Storybook-driven UI, and best practices for code quality and testing.
+Inclui autenticação, integração com banco de dados, UI orientada por Storybook e boas práticas de qualidade e testes de código.
 
-Developed for Tech Challenge 1.
+Desenvolvido para o Tech Challenge 1.
 
-## Getting Started
+## Primeiros Passos
 
-### 1. Clone the repository
+### 1. Clone o repositório
 
 ```bash
 git clone git@github.com:NewCode-Crafters/ncc-finance.git
 cd ncc-finance
 ```
 
-### 2. Install dependencies
+### 2. Instale as dependências
 
-> Pre-requirements: Node >= 18
+> Pré-requisitos: Node >= 18
 
 ```bash
 npm install
 ```
 
-### 3. Configure Prisma
+### 3. Configure o Prisma
 
-- Copy the example environment file and update the database URL:
+- Copie o arquivo de ambiente de exemplo e atualize a URL do banco de dados:
   ```bash
   cp .env.example .env
   ```
-- Edit `.env` and set your `NEXTAUTH_SECRET`.
+- Edite o `.env` e defina seu `NEXTAUTH_SECRET`.
 
-> How to: Generate the password by `npx auth secret`, then copy the value from `.env.local` to `NEXTAUTH_SECRET` in `.env` file. Also, you can delete the `.env.local` file, it is not necessary.
+> Como fazer: Gere a senha com `npx auth secret`, copie o valor de `.env.local` para `NEXTAUTH_SECRET` no arquivo `.env`. Você pode deletar o arquivo `.env.local`, pois não é necessário.
 
-### 4. Run Prisma migrations
+### 4. Execute as migrações do Prisma
 
 ```bash
 npm run prisma:migrate
 ```
 
-> Note: After the first time this step finishes, automatically will run the initial database seed.
+> Nota: Após a primeira execução deste passo, o seed inicial do banco será executado automaticamente.
 
-### 5. Run the development server
+### 5. Inicie o servidor de desenvolvimento
 
 ```bash
 npm run dev
 ```
 
-Then, Access `http://localhost:3000/`:
+Depois, acesse `http://localhost:3000/`:
 
-- "Já tenho conta" Option - Fill the "Email" and "Senha" fields with the following credentials:
+- Opção "Já tenho conta" - Preencha os campos "Email" e "Senha" com as credenciais:
   - Email: guest@ncc.com
-  - Password: ncc
-  - Select the "Access" button. The application will redirect to the home page, after success
-- "Abrir minha conta" option - Fill all fields with the proper information, then "Create conta" button
-  - The application will redirect to the sign in page, after success.
-  - Sign in with the data previously saved. The application will redirect to the home page, after success
+  - Senha: ncc
+  - Selecione o botão "Acessar". O app irá redirecionar para a página inicial após o sucesso.
+- Opção "Abrir minha conta" - Preencha todos os campos com as informações solicitadas e clique em "Criar conta".
+  - O app irá redirecionar para a página de login após o sucesso.
+  - Faça login com os dados cadastrados. O app irá redirecionar para a página inicial após o sucesso.
 
-### 6. Additional Commands Seed the database(optional, only if decides to)
+### 6. Comandos Adicionais (opcional, apenas se necessário)
 
-A. Optional, only necessary if it custom the seed script.
+A. Opcional, necessário apenas se customizar o script de seed.
 
 ```bash
 npm run prisma:seed
 ```
 
-B. Optional, it resets prisma DB, then you are able to generate seed using command `A`.
+B. Opcional, reseta o banco do Prisma, permitindo gerar o seed usando o comando `A`.
 
 ```bash
 npm run prisma:db-reset
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the app.
+Abra [http://localhost:3000](http://localhost:3000) para visualizar o app.
 
-## Project Structure
+## Estrutura do Projeto
 
 ```
 ncc-finance/
-├── .github/            # GitHub workflows and templates
-├── .husky/             # Husky git hooks
-├── .next/              # Next.js build output (auto-generated)
-├── .storybook/         # Storybook configuration for UI component development
-├── .vscode/            # VS Code editor settings and extensions
-├── docs/               # Project documentation and guides
-├── node_modules/       # Installed dependencies
-├── prisma/             # Prisma schema, migrations, and seed scripts
-├── public/             # Static assets (images, icons, etc.)
-├── src/                # Main source code for the application
-│   ├── app/            # Next.js app directory (routes, layouts, pages)
-│   ├── components/     # Reusable React components
-│   ├── constants/      # Application-wide constants
-│   ├── features/       # Feature-specific modules and logic
-│   ├── lib/            # Utility libraries and helpers
-│   ├── models/         # Data models and types
-│   ├── service/        # Service layer for business logic and API calls
-│   ├── stories/        # Storybook stories for UI components
-│   ├── types/          # Shared TypeScript types and interfaces
-│   └── setupTests.ts   # Test setup file
-├── tests/              # Code Coverage for the automated tests for the application
-├── .env                # Environment variable configuration
-├── .env.example        # Example environment variable configuration
-├── .eslintignore       # ESLint ignore rules
-├── .gitignore          # Git ignore rules
-├── .huskyrc            # Husky configuration
-├── .lintstagedrc       # Lint Staged configuration
-├── .nvmrc              # Node version manager configuration
-├── .prettierignore     # Prettier ignore rules
-├── .prettierrc.json    # Prettier configuration
-├── eslint.config.mjs   # ESLint configuration
-├── next-env.d.ts       # Next.js TypeScript environment definitions
-├── next.config.ts      # Next.js configuration
-├── package-lock.json   # Dependency lock file
-├── package.json        # Project metadata, scripts, and dependencies
-├── postcss.config.mjs  # PostCSS configuration
-├── README.md           # Project documentation
-├── tsconfig.json       # TypeScript configuration
-└── vitest.config.ts    # Vitest testing configuration
+├── .github/            # Workflows e templates do GitHub
+├── .husky/             # Hooks do Husky
+├── .next/              # Build do Next.js (gerado automaticamente)
+├── .storybook/         # Configuração do Storybook para UI
+├── .vscode/            # Configurações e extensões do VS Code
+├── docs/               # Documentação e guias do projeto
+├── node_modules/       # Dependências instaladas
+├── prisma/             # Schema, migrações e seeds do Prisma
+├── public/             # Arquivos estáticos (imagens, ícones, etc.)
+├── src/                # Código-fonte principal da aplicação
+│   ├── app/            # Diretório do app Next.js (rotas, layouts, páginas)
+│   ├── components/     # Componentes React reutilizáveis
+│   ├── constants/      # Constantes globais
+│   ├── features/       # Módulos e lógicas específicas de features
+│   ├── lib/            # Bibliotecas utilitárias e helpers
+│   ├── models/         # Modelos e tipos de dados
+│   ├── service/        # Camada de serviços e chamadas de API
+│   ├── stories/        # Stories do Storybook para componentes UI
+│   ├── types/          # Tipos e interfaces TypeScript compartilhados
+│   └── setupTests.ts   # Arquivo de setup de testes
+├── tests/              # Cobertura de código dos testes automatizados
+├── .env                # Configuração de variáveis de ambiente
+├── .env.example        # Exemplo de configuração de variáveis de ambiente
+├── .eslintignore       # Regras de exclusão do ESLint
+├── .gitignore          # Regras de exclusão do Git
+├── .huskyrc            # Configuração do Husky
+├── .lintstagedrc       # Configuração do Lint Staged
+├── .nvmrc              # Configuração do Node Version Manager
+├── .prettierignore     # Regras de exclusão do Prettier
+├── .prettierrc.json    # Configuração do Prettier
+├── eslint.config.mjs   # Configuração do ESLint
+├── next-env.d.ts       # Definições de ambiente TypeScript do Next.js
+├── next.config.ts      # Configuração do Next.js
+├── package-lock.json   # Lockfile de dependências
+├── package.json        # Metadados, scripts e dependências do projeto
+├── postcss.config.mjs  # Configuração do PostCSS
+├── README.md           # Documentação do projeto
+├── tsconfig.json       # Configuração do TypeScript
+└── vitest.config.ts    # Configuração de testes Vitest
 ```
 
 ## Scripts
 
-| Script            | Description                                                                    |
-| ----------------- | ------------------------------------------------------------------------------ |
-| `check:node`      | Checks if Node.js version is 18 or higher before installing dependencies.      |
-| `preinstall`      | Runs the Node.js version check before installing dependencies.                 |
-| `dev`             | Starts the Next.js development server with Turbopack for fast refresh and HMR. |
-| `build`           | Builds the Next.js application for production.                                 |
-| `start`           | Starts the Next.js production server.                                          |
-| `lint`            | Runs ESLint to check for code quality and style issues.                        |
-| `lint:fix`        | Runs ESLint and automatically fixes fixable issues.                            |
-| `prettier:check`  | Checks code formatting in the `src` directory using Prettier.                  |
-| `storybook`       | Starts Storybook for developing and testing UI components in isolation.        |
-| `build-storybook` | Builds the static Storybook site for deployment.                               |
-| `commit`          | Starts Commitizen CLI for standardized commit messages.                        |
-| `test`            | Runs all tests using Vitest.                                                   |
-| `test:ui`         | Opens the Vitest UI for interactive test running.                              |
-| `test:coverage`   | Runs tests and generates a code coverage report.                               |
-| `prepare`         | Sets up Husky git hooks after installing dependencies.                         |
-| `prisma:migrate`  | Runs Prisma migrations in development.                                         |
-| `prisma:generate` | Generates Prisma client code from the schema.                                  |
-| `prisma:seed`     | Seeds the database with initial data using the seed script.                    |
-| `prisma:db-reset` | Resets the database and applies all migrations from scratch.                   |
+| Script            | Descrição                                                                              |
+| ----------------- | -------------------------------------------------------------------------------------- |
+| `check:node`      | Verifica se a versão do Node.js é 18 ou superior antes de instalar as dependências.    |
+| `preinstall`      | Executa a verificação da versão do Node.js antes de instalar as dependências.          |
+| `dev`             | Inicia o servidor de desenvolvimento Next.js com Turbopack para fast refresh e HMR.    |
+| `build`           | Faz o build da aplicação Next.js para produção.                                        |
+| `start`           | Inicia o servidor Next.js em modo produção.                                            |
+| `lint`            | Executa o ESLint para checar qualidade e estilo do código.                             |
+| `lint:fix`        | Executa o ESLint e corrige automaticamente os problemas corrigíveis.                   |
+| `prettier:check`  | Verifica a formatação do código no diretório `src` usando o Prettier.                  |
+| `storybook`       | Inicia o Storybook para desenvolvimento e testes de componentes UI isolados.           |
+| `build-storybook` | Gera o site estático do Storybook para deploy.                                         |
+| `commit`          | Inicia o Commitizen CLI para mensagens de commit padronizadas.                         |
+| `test`            | Executa todos os testes usando o Vitest.                                               |
+| `test:ui`         | Abre a interface do Vitest para execução interativa dos testes.                        |
+| `test:coverage`   | Executa os testes e gera o relatório de cobertura de código.                           |
+| `prepare`         | Configura os hooks do Husky após instalar as dependências.                             |
+| `prisma:migrate`  | Executa as migrações do Prisma em desenvolvimento.                                     |
+| `prisma:generate` | Gera o client do Prisma a partir do schema.                                            |
+| `prisma:seed`     | Popula o banco de dados com dados iniciais usando o script de seed.                    |
+| `prisma:db-reset` | Reseta o banco de dados e aplica todas as migrações do zero.                           |
 
-## Main Libraries & Tools
+## Principais Bibliotecas & Ferramentas
 
-| Library/Tool                  | Purpose                                                               |
-| ----------------------------- | --------------------------------------------------------------------- |
-| **TypeScript**                | Type-safe JavaScript for scalable and maintainable development.       |
-| **Next.js**                   | React framework for SSR, routing, and API routes.                     |
-| **React**                     | Core UI library for building user interfaces.                         |
-| **Prisma**                    | Type-safe ORM for database access and migrations.                     |
-| **@prisma/client**            | Prisma's generated client for database queries.                       |
-| **NextAuth.js**               | Authentication for Next.js apps.                                      |
-| **@auth/prisma-adapter**      | Prisma adapter for NextAuth.js to persist user sessions and accounts. |
-| **Tailwind CSS**              | Utility-first CSS framework for rapid UI development.                 |
-| **Storybook**                 | Isolated UI component development and documentation environment.      |
-| **@storybook/nextjs**         | Storybook integration for Next.js projects.                           |
-| **@faker-js/faker**           | Generates fake data for testing and seeding.                          |
-| **Vitest**                    | Fast unit testing framework with Vite integration.                    |
-| **@testing-library/react**    | Utilities for testing React components with a user-centric approach.  |
-| **@testing-library/jest-dom** | Custom Jest matchers for asserting on DOM nodes.                      |
-| **Playwright**                | End-to-end browser testing for UI flows.                              |
-| **ESLint**                    | Linting for code quality and consistency.                             |
-| **Prettier**                  | Code formatter for consistent style.                                  |
-| **Commitizen**                | Standardizes commit messages for better readability and automation.   |
-| **Husky**                     | Git hooks for enforcing code quality before commits and pushes.       |
-| **Lint Staged**               | Runs linters and formatters on staged git files.                      |
-| **react-hot-toast**           | Toast notifications for user feedback.                                |
-| **@headlessui/react**         | Unstyled, accessible UI primitives for React.                         |
-| **@heroicons/react**          | Beautiful hand-crafted SVG icons for React.                           |
-| **bcrypt**                    | Password hashing for authentication.                                  |
-| **validator**                 | String validation and sanitization.                                   |
+| Biblioteca/Ferramenta           | Finalidade                                                                 |
+| ------------------------------- | -------------------------------------------------------------------------- |
+| **TypeScript**                  | JavaScript tipado para desenvolvimento escalável e sustentável.            |
+| **Next.js**                     | Framework React para SSR, roteamento e rotas de API.                      |
+| **React**                       | Biblioteca principal para construção de interfaces de usuário.             |
+| **Prisma**                      | ORM tipado para acesso ao banco de dados e migrações.                     |
+| **@prisma/client**              | Client gerado pelo Prisma para consultas ao banco de dados.                |
+| **NextAuth.js**                 | Autenticação para apps Next.js.                                            |
+| **@auth/prisma-adapter**        | Adaptador Prisma para NextAuth.js para persistir sessões e contas.         |
+| **Tailwind CSS**                | Framework CSS utilitário para desenvolvimento rápido de UI.                |
+| **Storybook**                   | Ambiente isolado para desenvolvimento e documentação de componentes UI.    |
+| **@storybook/nextjs**           | Integração do Storybook para projetos Next.js.                             |
+| **@faker-js/faker**             | Geração de dados fake para testes e seeds.                                 |
+| **Vitest**                      | Framework de testes unitários rápido com integração Vite.                  |
+| **@testing-library/react**      | Utilitários para testar componentes React com foco no usuário.             |
+| **@testing-library/jest-dom**   | Matchers customizados do Jest para asserções no DOM.                       |
+| **Playwright**                  | Testes de ponta a ponta para fluxos de UI.                                 |
+| **ESLint**                      | Linter para qualidade e consistência do código.                            |
+| **Prettier**                    | Formatador de código para estilo consistente.                              |
+| **Commitizen**                  | Padroniza mensagens de commit para melhor legibilidade e automação.        |
+| **Husky**                       | Hooks do Git para garantir qualidade antes de commits e push.              |
+| **Lint Staged**                 | Executa linters e formatadores nos arquivos staged do git.                 |
+| **react-hot-toast**             | Notificações toast para feedback ao usuário.                               |
+| **@headlessui/react**           | Primitivas UI acessíveis e sem estilo para React.                          |
+| **@heroicons/react**            | Ícones SVG artesanais e bonitos para React.                                |
+| **bcrypt**                      | Hash de senha para autenticação.                                           |
+| **validator**                   | Validação e sanitização de strings.                                        |
 
-## External Links
+## Links Externos
 
-- **[Video Demo](https://google.com)**
-- **[Figma Design](https://google.com)**
+- **[Demo em Vídeo](https://google.com)**
+- **[Design no Figma](https://google.com)**
 
-## Contributors
+## Contribuidores
 
-| Name              | GitHub Profile                                       | Profile Picture                                                                                                       |
-| ----------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Carlos Ferreira   | [@carlosrfjrdev](https://github.com/carlosrfjrdev)   | <img src="https://avatars.githubusercontent.com/u/107284563?v=4" width="40" height="40" style="border-radius:50%;" /> |
-| Joelton Matos     | [@joeltonmatos](https://github.com/joeltonmats)      | <img src="https://avatars.githubusercontent.com/u/4190757?v=4" width="40" height="40" style="border-radius:50%;" />   |
-| Larissa Rocha     | [@larisr](https://github.com/larisr)                 | <img src="https://avatars.githubusercontent.com/u/64704731?v=4" width="40" height="40" style="border-radius:50%;" />  |
-| Leonardo Medeiros | [@leomartinsm](https://github.com/leomartinsm)       | <img src="https://avatars.githubusercontent.com/u/20979905?v=4" width="40" height="40" style="border-radius:50%;" />  |
-| Ricardo Momberg   | [@ricardomomberg](https://github.com/RicardoMomberg) | <img src="https://avatars.githubusercontent.com/u/65039145?v=4" width="40" height="40" style="border-radius:50%;" />  |
+| Nome              | Perfil no GitHub                                      | Foto de Perfil                                                                                                       |
+| ----------------- | ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Carlos Ferreira   | [@carlosrfjrdev](https://github.com/carlosrfjrdev)    | <img src="https://avatars.githubusercontent.com/u/107284563?v=4" width="40" height="40" style="border-radius:50%;" /> |
+| Joelton Matos     | [@joeltonmatos](https://github.com/joeltonmats)       | <img src="https://avatars.githubusercontent.com/u/4190757?v=4" width="40" height="40" style="border-radius:50%;" />   |
+| Larissa Rocha     | [@larisr](https://github.com/larisr)                  | <img src="https://avatars.githubusercontent.com/u/64704731?v=4" width="40" height="40" style="border-radius:50%;" />  |
+| Leonardo Medeiros | [@leomartinsm](https://github.com/leomartinsm)        | <img src="https://avatars.githubusercontent.com/u/20979905?v=4" width="40" height="40" style="border-radius:50%;" />  |
+| Ricardo Momberg   | [@ricardomomberg](https://github.com/RicardoMomberg)  | <img src="https://avatars.githubusercontent.com/u/65039145?v=4" width="40" height="40" style="border-radius:50%;" />  |
+gi
