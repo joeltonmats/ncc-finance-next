@@ -31,7 +31,7 @@
     "check:node": "node -e \"if (parseInt(process.versions.node.split('.')[0]) < 18) { console.error('❌ Node 18+ is required'); process.exit(1); }\"",
     "preinstall": "npm run check:node",
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
@@ -46,7 +46,8 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:generate": "prisma generate",
     "prisma:seed": "prisma db seed",
-    "prisma:db-reset": "prisma migrate reset"
+    "prisma:db-reset": "prisma migrate reset",
+    "prisma:migrate-deploy": "prisma migrate deploy"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.9.0",

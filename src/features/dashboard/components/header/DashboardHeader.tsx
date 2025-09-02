@@ -94,7 +94,7 @@ export default function DashboardHeader() {
                     onClick={() =>
                       signOut({ callbackUrl: ROUTE_CONSTANTS.home })
                     }
-                    className={`w-full px-4 py-2 text-left ${
+                    className={`min-w-[180px] px-4 py-2 text-left ${
                       focus ? "bg-neutral-100" : ""
                     }`}
                   >
